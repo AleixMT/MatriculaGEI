@@ -4,13 +4,13 @@ import java.io.*;
 import java.util.Scanner;
 
 import TAD.*;
-import TAD.Canco;
+import TAD.Alumne;
 
 public class TestTaulaHashCanco {
 
 	public static void main(String[] args) {
 		TaulaHashEncadenadaIndirecta<String, Integer> t = new TaulaHashEncadenadaIndirecta<String, Integer>(10000);
-		LlistaGenerica<Canco> llista=new LlistaGenerica<Canco>(10000);
+		LlistaGenerica<Alumne> llista=new LlistaGenerica<Alumne>(10000);
 		
 		// llegim les cançons del fitxer i les afegim a la llista
 		Scanner entrada;
@@ -18,7 +18,7 @@ public class TestTaulaHashCanco {
 		String[] frasePartida;
 		int codi, pos;
 		String autor, nom, data;
-		Canco c;
+		Alumne c;
 		try {
 			entrada=new Scanner(new File("cancons.txt"));
 		
@@ -33,7 +33,7 @@ public class TestTaulaHashCanco {
 				autor=frasePartida[1];
 				nom=frasePartida[2];
 				data=frasePartida[3];
-				c=new Canco(codi,nom,autor,data);
+				c=new Alumne(codi,nom,autor,data);
 				llista.afegirElement(c);
 		  }
 		  entrada.close();
