@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ED_PRAC2_MARINE_ALEIX_IZQUIERDO_CRISTINA</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>DadesMatricula.csv</name>
+			<type>1</type>
+			<location>/media/amt/Datos/workspace/MatrículaGEI/DadesMatricula.csv</location>
+		</link>
+		<link>
+			<name>Pract2_ED1617.pdf</name>
+			<type>1</type>
+			<location>/media/amt/Datos/workspace/MatrículaGEI/Pract2_ED1617.pdf</location>
+		</link>
+	</linkedResources>
+</projectDescription>
