@@ -1,7 +1,7 @@
 package tipus;
 /**
  * Classe Assignatura.
- * @author Aleix Mariné
+ * @author Aleix Marine
  *
  */
 public class Assignatura implements Comparable<Assignatura> {
@@ -11,7 +11,7 @@ public class Assignatura implements Comparable<Assignatura> {
 	private Integer curs;
 	private Integer quadrimestre;
 /**
- * Rep els paràmetres per a crear la nova Assignatura 
+ * Rep els parametres per a crear la nova Assignatura 
  * @param codi
  * @param nom
  * @param credits

@@ -1,26 +1,13 @@
 package principal;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+import Exceptions.*;
+import Interfaces.*;
+import TAD.*;
+import tipus.Alumne;
+import tipus.Assignatura;
 
-import Dades.Cua;
-import Dades.CuaCircular;
-import Dades.CuaDinamica;
-import Dades.JavaUtil;
-import Exceptions.Cadenabuida;
-import Exceptions.CuaBuida;
-import Exceptions.CuaPlena;
-import Exceptions.valorImpossible;
-import Interface.TADCua;
 
 public class Main {
 
@@ -35,7 +22,7 @@ public class Main {
 		while (!exit) //mentre que el usuari no indiqui l'estructura iterarem
 		{
 			System.out.println("Quina consulta vols fer vols utilitzar?");
-			System.out.println("1.- Mostrar matrícula d'un alumne a partir del seu codi");
+			System.out.println("1.- Mostrar matricula d'un alumne a partir del seu codi");
 			System.out.println("2.- Mostrar estat de l'assignatura a partir del seu codi");
 			System.out.println("3.- Mostrar alumnes amb tants o menys nombre de credits especificats");
 			System.out.println("4.- Mostrar assignatures amb tants o més nombre d'alumnes especificats");
@@ -73,12 +60,17 @@ public class Main {
 
 	/**
 	 * Metode per a llegir el fitxer i afegir el contingut a les EDs
+	 * @param <E>
 	 * @param file -- fitxer a llegir
 	 * @return contingut del fitxer 
+	 * @throws LlistaPlena 
 	 */
-	public static String[] llegirFitxer(TADMultillista tad){
+	public static <E> String[] llegirFitxer(TADMultillista<E> tad) throws LlistaPlena{
 		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
 		teclat.nextLine(); //flush
+		TADLlistaGenerica<Alumne> llistaA = null; //new TADLlistaGenerica<Alumne>(10000); //llista d'alumnes
+		TADLlistaGenerica<Assignatura> llistaAs = null; //llista d'assignatures
+		String aux = "";
 		try
 		{
 			BufferedReader buffer = new BufferedReader(new FileReader("DadesMatricula.csv")); //Inicialitzem el buffer de fitxer
@@ -86,9 +78,15 @@ public class Main {
 			while((aux = buffer.readLine()) != null) 
 			{
 				String[] content = aux.split(";");
-				//Anar afegint alumnes a la llista d'alumnes
+				//codi assignatura;nom assignatura;credits;curs;quadrimestre;codi alumne;nom alumne
+				//Anar afegint alumnes a la llista d'alumnes				
+				Assignatura ass = new Assignatura(Integer.parseInt(content[0]), content[1], Integer.parseInt(content[2]), Integer.parseInt(content[3]), Integer.parseInt(content[4]));
+				llistaAs.afegir(ass);
 				//Anar afegint assignatures a la llista d'asssignatures
+				Alumne a = new Alumne(content[5], content[6]);
+				llistaA.afegir(a);
 				//Anar afegint relacions a la multillista
+				//tad.afegir(ass, a);
 	           } 
 			buffer.close();
 			tf=System.nanoTime();
@@ -98,6 +96,7 @@ public class Main {
 		{
 			System.out.println("ERROR: Problema d'entrada sortida");
 		}
+		return null; //wtf why
 	}
 	
 	public static TADMultillista menu(){ //mostra el menu i inicialitza el TAD
@@ -118,7 +117,7 @@ public class Main {
 				switch(opt) {
 				case 1: 
 					// Creem llistes i dades necessaries per a construir la multillista
-					tad=new MultillistaEstatica(new LlistaEstatica(), new Llistadinamica());
+					tad=new MultillistaEstatica();
 					break;
 				case 2: 
 					// Creem llistes i dades necessaries per a construir la multillista
@@ -143,14 +142,15 @@ public class Main {
 	/**
 	 * Funcio principal del programa
 	 * @param args arguments d'entrada
+	 * @throws LlistaPlena 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LlistaPlena {
 		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
 		while (true)
 		{
 			TADMultillista tad = menu(); //preguntem al usuari quina estructura vol i la inicialitzem
 			llegirFitxer(tad); //Passem el tad multillista per a que llegir fitxer llegeixi el fitxer i ho pleni de relacions
-			consultes(tad);
+			consultes();
 		}
 
-}
+}}

@@ -1,8 +1,15 @@
 package tipus;
 
+import TAD.Node;
+/**
+ * Classe Alumne
+ * @author Cristina Izquierdo
+ *
+ */
 public class Alumne{
 	private String codi;
 	private String nom;
+	private Node node;
 	
 	/**
 	 * Mètode constructor per la classe alumne
@@ -10,8 +17,9 @@ public class Alumne{
 	 * @param nom: nom de l'alumne
 	 */
 	public Alumne(String codi, String nom) {
-		this.nom=nom;
-		this.codi=codi;
+		this.nom = nom;
+		this.codi = codi;
+		this.node = null;
 	}
 
 	/**

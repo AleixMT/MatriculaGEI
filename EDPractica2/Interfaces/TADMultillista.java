@@ -14,7 +14,7 @@ public interface TADMultillista<E> {
 	 * @param e - element a afegir
 	 * @throws LlistaPlena
 	 */
-	public void afegir(E e) throws LlistaPlena;
+	public boolean afegir(E e) throws LlistaPlena;
 	
 	/**
 	 * Esborra un element de la llista

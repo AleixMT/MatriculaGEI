@@ -14,7 +14,7 @@ public interface TADLlistaGenerica<E> {
 	 * @param a - element a afegir
 	 * @throws LlistaPlena
 	 */
-	public void afegir(E a) throws LlistaPlena;
+	public boolean afegir(E a) throws LlistaPlena;
 	
 	/**
 	 * Esborra un element de la llista
