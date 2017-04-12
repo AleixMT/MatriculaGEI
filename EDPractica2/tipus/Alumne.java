@@ -1,4 +1,4 @@
-package TAD;
+package tipus;
 
 public class Alumne{
 	private String codi;
