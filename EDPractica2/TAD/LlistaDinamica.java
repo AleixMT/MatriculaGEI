@@ -3,11 +3,11 @@ package TAD;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class LlistaGenerica<T extends Comparable<T>> implements Iterable<T> {
+public class LlistaDinamica<T extends Comparable<T>> implements Iterable<T> {
 	private T[] llista;
 	private int num;
 	
-	public LlistaGenerica(int dim) {
+	public LlistaDinamica(int dim) {
 		llista=(T[])new Comparable[dim];
 		num=0;
 	}

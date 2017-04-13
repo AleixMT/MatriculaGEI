@@ -24,6 +24,7 @@ public class Assignatura implements Comparable<Assignatura> {
 	this.credits = credits;
 	this.curs = curs;
 	this.quadrimestre = quadrimestre;
+	
 }
 
 	public Integer getCodi() {
@@ -78,4 +79,14 @@ public class Assignatura implements Comparable<Assignatura> {
 		if (o.quadrimestre>this.quadrimestre) return -1;
 		return (o.nom.compareTo(this.nom));
 	}
+	
+	public Assignatura clone(){
+		return this;
+	}
+	
+	public boolean equals(Assignatura a){
+		return (this.codi==a.getCodi() && this.credits == a.getCredits() && this.curs == a.getCurs() && this.nom.equals(a.getNom()) && this.quadrimestre == a.getQuadrimestre());
+	}
+	
+	
 }

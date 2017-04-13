@@ -3,11 +3,11 @@ package Interfaces;
 import Exceptions.*;
 
 /**
- * Interface per a definir una llista genèrica.
- * @author Cristina Izquierdo i Aleix Mariné
+ * Interface per a definir una llista genï¿½rica.
+ * @author Cristina Izquierdo i Aleix Marinï¿½
  *
  */
-public interface TADLlistaGenerica<E> {
+public abstract interface TADLlistaGenerica<E> {
 	
 	/**
 	 * Afegeix un element a la llista
@@ -33,40 +33,40 @@ public interface TADLlistaGenerica<E> {
 	public E consultar(E c) throws LlistaBuida;
 	
 	/**
-	 * Getter del número d'elements
-	 * @return número d'elements a la llista
+	 * Getter del nï¿½mero d'elements
+	 * @return nï¿½mero d'elements a la llista
 	 * @throws LlistaBuida
 	 */
 	public int getNumElem() throws LlistaBuida;
 
 	/**
-	 * mètode toString
+	 * mï¿½tode toString
 	 * @return String amb els elements de la llista
 	 */	
 	public String toString();
 	
 	/**
-	 * Mètode per comparar objectes
+	 * Mï¿½tode per comparar objectes
 	 * @param c - objecte a comparar
-	 * @return -1 si és més petit, 0 si és igual o 1 si és més gran
+	 * @return -1 si ï¿½s mï¿½s petit, 0 si ï¿½s igual o 1 si ï¿½s mï¿½s gran
 	 */
 	public int compareTo(E c);
 	
 	/**
-	 * Mètode per a comparar dos elements
+	 * Mï¿½tode per a comparar dos elements
 	 * @return true o false
 	 */
 	public boolean equals();
 	
 	/**
-	 * Mètode per a l'iterator
+	 * Mï¿½tode per a l'iterator
 	 * @return true o false
 	 */
 	public boolean hasNext();
 	
 	/**
-	 * Mètode per a l'iterator
-	 * @return següent objecte
+	 * Mï¿½tode per a l'iterator
+	 * @return segï¿½ent objecte
 	 */
 	public E next();
 	

@@ -3,11 +3,11 @@ package TAD;
 import java.util.Iterator;
 
 public class MeuIterator<T extends Comparable<T>> implements Iterator<T> {
-	private LlistaGenerica<T> llista;	//nou atribut que ens guardarà una copia de la llista actual de punts
+	private LlistaEstatica<T> llista;	//nou atribut que ens guardarï¿½ una copia de la llista actual de punts
 	private int posicioIterator;
 	
-	public MeuIterator(LlistaGenerica<T> ll) {
-		llista=new LlistaGenerica<T>(ll.getNum());
+	public MeuIterator(LlistaEstatica<T> ll) {
+		llista=new LlistaEstatica<T>(ll.getNum());
 		for (int i=0; i<ll.getNum(); i++) {
 			llista.afegirElement(ll.consultarIessim(i));
 		}

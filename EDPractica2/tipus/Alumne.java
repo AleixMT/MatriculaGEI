@@ -1,6 +1,5 @@
 package tipus;
 
-import TAD.Node;
 /**
  * Classe Alumne
  * @author Cristina Izquierdo
@@ -9,17 +8,25 @@ import TAD.Node;
 public class Alumne{
 	private String codi;
 	private String nom;
-	private Node node;
-	
+	private Matricula matricula;
+
 	/**
-	 * Mètode constructor per la classe alumne
+	 * Mï¿½tode constructor per la classe alumne
 	 * @param codi: codi de l'alumne
 	 * @param nom: nom de l'alumne
 	 */
 	public Alumne(String codi, String nom) {
 		this.nom = nom;
 		this.codi = codi;
-		this.node = null;
+		this.matricula = null;
+	}
+
+	public Matricula getNode() {
+		return matricula;
+	}
+
+	public void setNode(Matricula matricula) {
+		this.matricula = matricula;
 	}
 
 	/**
@@ -55,19 +62,26 @@ public class Alumne{
 	}
 
 	/**
-	 * Mètode per a comparar un alumne amb un altre mitjançant el seu nom
+	 * Mï¿½tode per a comparar un alumne amb un altre mitjanï¿½ant el seu nom
 	 */
 	public int compareTo(Alumne o) {
 		return (this.nom.compareTo(o.nom));
 	}
 
 	/**
-	 * Mètode toString de la classe Alumne
+	 * Mï¿½tode toString de la classe Alumne
 	 */
 	@Override
 	public String toString() {
 		return "Alumne:\ncodi: " + codi + "\nnom: " + nom + "\n\n";
 	}
 	
+	public Alumne clone(){
+		return this;
+	}
 	
+	public boolean equals(Alumne a){
+		return (this.nom == a.getNom() && this.codi == a.getCodi());
+	}
+	 
 }

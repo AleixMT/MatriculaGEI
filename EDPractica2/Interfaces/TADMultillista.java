@@ -3,14 +3,14 @@ package Interfaces;
 import Exceptions.*;
 
 /**
- * Interfície del TAD Multillista
- * @author Cristina Izquierdo i Aleix Mariné
+ * Interfï¿½cie del TAD Multillista
+ * @author Cristina Izquierdo i Aleix Marinï¿½
  *
  */
-public interface TADMultillista<E> {
+public abstract interface TADMultillista<E> {
 
 	/**
-	 * Afegeix una relació
+	 * Afegeix una relaciï¿½
 	 * @param e - element a afegir
 	 * @throws LlistaPlena
 	 */
@@ -33,33 +33,33 @@ public interface TADMultillista<E> {
 	public E consultar(E c)throws LlistaBuida;
 	
 	/**
-	 * mètode toString
+	 * mï¿½tode toString
 	 * @return String amb les relacions de la multillista
 	 */
 	public String toString();
 	
 	/**
-	 * Mètode per comparar objectes
+	 * Mï¿½tode per comparar objectes
 	 * @param c - objecte a comparar
-	 * @return -1 si és més petit, 0 si és igual o 1 si és més gran
+	 * @return -1 si ï¿½s mï¿½s petit, 0 si ï¿½s igual o 1 si ï¿½s mï¿½s gran
 	 */
 	public int compareTo(E c);
 	
 	/**
-	 * Mètode per a comparar dos elements
+	 * Mï¿½tode per a comparar dos elements
 	 * @return true o false
 	 */
 	public boolean equals();
 	
 	/**
-	 * Mètode per a l'iterator
+	 * Mï¿½tode per a l'iterator
 	 * @return true o false
 	 */
 	public boolean hasNext();
 	
 	/**
-	 * Mètode per a l'iterator
-	 * @return següent objecte
+	 * Mï¿½tode per a l'iterator
+	 * @return segï¿½ent objecte
 	 */
 	public E next();
 }
