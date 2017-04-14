@@ -21,7 +21,7 @@ public class Main {
 		int opt=0;
 		while (!exit) //mentre que el usuari no indiqui l'estructura iterarem
 		{
-			System.out.println("Quina consulta vols fer vols utilitzar?");
+			System.out.println("Quina consulta vols fer?");
 			System.out.println("1.- Mostrar matricula d'un alumne a partir del seu codi");
 			System.out.println("2.- Mostrar estat de l'assignatura a partir del seu codi");
 			System.out.println("3.- Mostrar alumnes amb tants o menys nombre de credits especificats");
@@ -52,7 +52,7 @@ public class Main {
 			}
 			catch (InputMismatchException e) 
 			{
-				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una cadena incorrecta, torna-ho a intentar \n");
+				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una opció incorrecta, torna-ho a intentar \n");
                 teclat.nextLine(); 
 			}
 		}
@@ -68,12 +68,18 @@ public class Main {
 	public static <E> String[] llegirFitxer(TADMultillista<E> tad) throws LlistaPlena{
 		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
 		teclat.nextLine(); //flush
-		TADLlistaGenerica<Alumne> llistaA = null; //new TADLlistaGenerica<Alumne>(10000); //llista d'alumnes
-		TADLlistaGenerica<Assignatura> llistaAs = null; //llista d'assignatures
 		String aux = "";
+		String fitxer = null;
+		try{
+			System.out.println("Quin es el nom del fitxer de dades?");
+			fitxer = teclat.nextLine();
+		}catch (InputMismatchException e){
+			System.out.println("El nom del fitxer es incorrecte, torna-ho a intentar:");
+			fitxer = teclat.nextLine();
+		}
 		try
 		{
-			BufferedReader buffer = new BufferedReader(new FileReader("DadesMatricula.csv")); //Inicialitzem el buffer de fitxer
+			BufferedReader buffer = new BufferedReader(new FileReader(fitxer)); //Inicialitzem el buffer de fitxer
 			ti=System.nanoTime();
 			while((aux = buffer.readLine()) != null) 
 			{
@@ -81,10 +87,8 @@ public class Main {
 				//codi assignatura;nom assignatura;credits;curs;quadrimestre;codi alumne;nom alumne
 				//Anar afegint alumnes a la llista d'alumnes				
 				Assignatura ass = new Assignatura(Integer.parseInt(content[0]), content[1], Integer.parseInt(content[2]), Integer.parseInt(content[3]), Integer.parseInt(content[4]));
-				llistaAs.afegir(ass);
 				//Anar afegint assignatures a la llista d'asssignatures
 				Alumne a = new Alumne(content[5], content[6]);
-				llistaA.afegir(a);
 				//Anar afegint relacions a la multillista
 				//tad.afegir(ass, a);
 	           } 
@@ -94,7 +98,7 @@ public class Main {
 		}
 		catch (IOException e) //Problema general de IO
 		{
-			System.out.println("ERROR: Problema d'entrada sortida");
+			System.out.println("ERROR: Problema d'entrada/sortida");
 		}
 		return null; //wtf why
 	}
@@ -133,7 +137,7 @@ public class Main {
 			}
 			catch (InputMismatchException e) 
 			{
-				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una cadena incorrecta, torna-ho a intentar \n");
+				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una opció incorrecta, torna-ho a intentar \n");
                 teclat.nextLine(); 
 			}
 		}
