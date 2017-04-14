@@ -1,10 +1,5 @@
 package TAD;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
-
 import Exceptions.LlistaBuida;
 import Exceptions.LlistaPlena;
 import Interfaces.*;
@@ -17,6 +12,7 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	private int[] buits;
 	private int numElemsbuits;
 	
+	@SuppressWarnings("unchecked")
 	public LlistaEstatica(int dim) {
 		this.llista = (NodeEstatic<T>[]) new Comparable[dim];
 		this.primer = -1;
@@ -34,52 +30,135 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	}
 
 	public boolean afegir(NodeEstatic<T> a) throws LlistaPlena {
-		int aux = this.primer;
-		boolean trobat = false;
-		while (aux!=-1 && !trobat)
+		if (!this.esPlena())
 		{
-			
-			aux = this.llista[aux].getRef();
+			int aux = this.primer;
+			int preaux = -1;
+			boolean trobat = false;
+			int posicio;
+			if (this.esBuida())
+			{
+				posicio = this.desapilarBuits();
+				this.primer = posicio;
+				this.llista[posicio] = a;
+				this.numElem++;
+			}
+			else
+			{
+				while (aux!=-1 && !trobat)
+				{
+					int res = this.llista[aux].getObj().compareTo(a.getObj());
+					if (res == 0 )
+					{
+						return false;
+					}
+					else if (res < 0) break;
+					else
+					{
+						preaux = aux;
+						aux = this.llista[aux].getRef();
+					}
+				}
+			}
+			posicio = this.desapilarBuits();
+			this.llista[preaux].setRef(posicio);
+			this.llista[posicio].setRef(aux);
+			this.numElem++;
+			return true;
 		}
-		return false;
+		else
+		{
+			throw new LlistaPlena();
+		}
 	}
 
 	public NodeEstatic<T> esborrar(NodeEstatic<T> e) throws LlistaBuida {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
-	public NodeEstatic<T> consultar(NodeEstatic<T> c) throws LlistaBuida {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public int desapilarBuits(){
+		this.numElemsbuits--;
+		return this.buits[this.numElemsbuits];
+	}
+	
+	public void apilarBuits(int n){
+		this.buits[this.numElemsbuits]=n;
+	}
+	
+	public boolean buitsEsPlena()
+	{
+		if (this.buits.length == this.numElemsbuits)
+		{
+			return true;
+		}
+		else return false;
+	}
+	
+	public boolean buitsEsBuida()
+	{
+		if (this.numElemsbuits==0)
+		{
+			return true;
+		}
+		else return false;
+	}
+	
+	public boolean esPlena()
+	{
+		return this.llista.length == this.numElem;
+	}
+	
+	public boolean esBuida()
+	{
+		return this.numElem == 0;
+	}
+	
+	public NodeEstatic<T>[] getLlista() {
+		return llista;
 	}
 
-	public int getNumElem() throws LlistaBuida {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setLlista(NodeEstatic<T>[] llista) {
+		this.llista = llista;
 	}
 
-	public int compareTo(NodeEstatic<T> c) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getNumElem() {
+		return numElem;
 	}
 
-	public boolean equals() {
-		// TODO Auto-generated method stub
-		return false;
+	public void setNumElem(int numElem) {
+		this.numElem = numElem;
 	}
 
-	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
+	public int getPrimer() {
+		return primer;
 	}
 
-	public NodeEstatic<T> next() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setPrimer(int primer) {
+		this.primer = primer;
 	}
 
+	public int[] getBuits() {
+		return buits;
+	}
 
+	public void setBuits(int[] buits) {
+		this.buits = buits;
+	}
+
+	public int getNumElemsbuits() {
+		return numElemsbuits;
+	}
+
+	public void setNumElemsbuits(int numElemsbuits) {
+		this.numElemsbuits = numElemsbuits;
+	}
+
+	public IteratorEstatic<T> Iterator()
+	{
+		return new IteratorEstatic<T>(this);
+	}
 	
 
 	

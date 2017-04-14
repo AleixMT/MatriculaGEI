@@ -8,7 +8,6 @@ package tipus;
 public class Alumne{
 	private String codi;
 	private String nom;
-	private Matricula matricula;
 
 	/**
 	 * M�tode constructor per la classe alumne
@@ -21,13 +20,6 @@ public class Alumne{
 		this.matricula = null;
 	}
 
-	public Matricula getNode() {
-		return matricula;
-	}
-
-	public void setNode(Matricula matricula) {
-		this.matricula = matricula;
-	}
 
 	/**
 	 * Getter del codi de l'alumne
