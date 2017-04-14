@@ -3,51 +3,48 @@ package TAD;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class LlistaJavaUtil<T extends Comparable<T>> implements Iterable<T> {
+import Exceptions.LlistaBuida;
+import Exceptions.LlistaPlena;
+import Interfaces.TADLlistaGenerica;
+
+public class LlistaJavaUtil<T extends Comparable<T>> implements TADLlistaGenerica<NodeEstatic<T>> {
 	private T[] llista;
-	private int num;
+	private int numElem;
 	
 	public LlistaJavaUtil(int dim) {
 		llista=(T[])new Comparable[dim];
-		num=0;
+		numElem=0;
 	}
 
-	public void afegirElement(T p) {
-		if (num>=llista.length) {
-			// amplio
-			T[] nova=(T[]) new Comparable[llista.length*2];
-			for (int i=0; i<llista.length; i++)
-				nova[i]=llista[i];
-			llista=nova;
-		}
-		// segur que tinc espai
-		int pos=num-1;
-		while ((pos>=0) && (p.compareTo(llista[pos])<0)) {
-			llista[pos+1]=llista[pos];
-			pos--;
-		}
-		llista[pos+1]=p;
-		num++;
+	public boolean afegir(NodeEstatic<T> a) throws LlistaPlena {
+		return false;
 	}
-	
-	public T consultarIessim(int i) {
-		if (i<num) return(llista[i]);
-		else return(null);
+
+	public NodeEstatic<T> esborrar(NodeEstatic<T> e) throws LlistaBuida {
+		return null;
 	}
-	
-	public int getNum() {
-		return num;
+
+	public int getNumElem() throws LlistaBuida {
+		return numElem;
+	}
+
+	public T[] getLlista() {
+		return llista;
+	}
+
+	public void setLlista(T[] llista) {
+		this.llista = llista;
+	}
+
+	public void setNumElem(int numElem) {
+		this.numElem = numElem;
 	}
 
 	@Override
 	public String toString() {
-		return "LlistaPunts [llista=" + Arrays.toString(llista) + ", num=" + num + "]";
+		return "LlistaJavaUtil [llista=" + Arrays.toString(llista) + ", numElem=" + numElem + "]";
 	}
 
-	@Override
-	public Iterator<T> iterator() {
-		MeuIterator<T> pI=new MeuIterator<T>(this);
-		return pI;
-	}
+	
 	
 }
