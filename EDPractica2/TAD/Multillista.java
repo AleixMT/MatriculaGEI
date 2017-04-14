@@ -1,44 +1,35 @@
 package TAD;
 
+import tipus.Alumne;
+import tipus.Assignatura;
+import tipus.Matricula;
 import Exceptions.LlistaBuida;
 import Exceptions.LlistaPlena;
-import Interfaces.TADMultillista;
+import Interfaces.*;
+
 
 /**
- * Classe per a crear la multillista amb llistes est�tiques
+ * Classe per a crear la multillista
  * Aquesta classe crear� llistes din�miques per a alumnes i per a assignatures
  * @author Cristina Izquierdo i Aleix Marin�
+ * @param <E>
  *
  */
-public class Multillista<T extends Comparable<T>> implements TADMultillista{
+public class Multillista<E> implements TADMultillista<E>{
 
-	private T[] llista;
+	private TADLlistaGenerica<Assignatura> as;
+	private TADLlistaGenerica<Alumne> a;
 
-	
-	public Multillista(int elems)
+	public Multillista(TADLlistaGenerica<Assignatura> as, TADLlistaGenerica<Alumne> a)
 	{
-		this.llista = (T[])new Comparable[elems];
-		this.numElem = 0;
-		this.cim = -1;
-		
-		this.buits = new int[elems];
-		for (int i=0; i<this.llista.length ; i++)
-		{
-			this.buits[i]= i;
-		}
-		this.numElembuits = elems;
+		this.a = a;
+		this.as = as;
 	}
-	public boolean afegir(T e) throws LlistaPlena {
+	
+	public boolean afegir(Matricula m) throws LlistaPlena {
 		boolean trobat = false;
-		int aux = cim;
-		while (aux!= -1 && trobat == false)
-		{
-			if (this.llista[aux].compareTo(e) == 0 ) return false;
-			if (this.llista[aux].compareTo(e) > 0)
-			{
-				this.llista[aux].
-			}
-		}
+		
+		
 		return false;
 	}
 
@@ -76,6 +67,10 @@ public class Multillista<T extends Comparable<T>> implements TADMultillista{
 	public Object next() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public boolean afegir(Object e) throws LlistaPlena {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

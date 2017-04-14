@@ -5,7 +5,7 @@ package tipus;
  * @author Cristina Izquierdo
  *
  */
-public class Alumne{
+public class Alumne implements Comparable<Alumne>{
 	private String codi;
 	private String nom;
 
@@ -17,7 +17,6 @@ public class Alumne{
 	public Alumne(String codi, String nom) {
 		this.nom = nom;
 		this.codi = codi;
-		this.matricula = null;
 	}
 
 

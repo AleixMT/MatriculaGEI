@@ -1,5 +1,6 @@
 package TAD;
 
+
 import Exceptions.LlistaBuida;
 import Exceptions.LlistaPlena;
 import Interfaces.*;
@@ -62,7 +63,8 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 			}
 			posicio = this.desapilarBuits();
 			this.llista[preaux].setRef(posicio);
-			this.llista[posicio].setRef(aux);
+			a.setRef(aux);
+			this.llista[posicio] = a;
 			this.numElem++;
 			return true;
 		}
@@ -70,6 +72,7 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		{
 			throw new LlistaPlena();
 		}
+		
 	}
 
 	public NodeEstatic<T> esborrar(NodeEstatic<T> e) throws LlistaBuida {
@@ -115,52 +118,43 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		return this.numElem == 0;
 	}
 	
-	public NodeEstatic<T>[] getLlista() {
-		return llista;
+	public int getNumElem() throws LlistaBuida {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	public void setLlista(NodeEstatic<T>[] llista) {
-		this.llista = llista;
+	public int compareTo(NodeEstatic<T> c) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	public int getNumElem() {
-		return numElem;
+	public boolean equals() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	public void setNumElem(int numElem) {
-		this.numElem = numElem;
+	public boolean hasNext() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	public int getPrimer() {
-		return primer;
-	}
-
-	public void setPrimer(int primer) {
-		this.primer = primer;
-	}
-
-	public int[] getBuits() {
-		return buits;
-	}
-
-	public void setBuits(int[] buits) {
-		this.buits = buits;
-	}
-
-	public int getNumElemsbuits() {
-		return numElemsbuits;
-	}
-
-	public void setNumElemsbuits(int numElemsbuits) {
-		this.numElemsbuits = numElemsbuits;
+	public NodeEstatic<T> next() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public IteratorEstatic<T> Iterator()
 	{
 		return new IteratorEstatic<T>(this);
 	}
-	
 
-	
+	public NodeEstatic<T> consultar(NodeEstatic<T> c) {
+		int aux = this.primer;
+		while (aux!=-1)
+		{
+			if (this.llista[aux].getObj().equals(c.getObj())) return this.llista[aux];
+		}
+		return null;
+	}
 	
 }

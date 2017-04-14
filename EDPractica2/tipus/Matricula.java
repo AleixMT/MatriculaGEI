@@ -6,18 +6,13 @@ package tipus;
  * @author Cristina Izquierdo i Aleix Marin�
  *
  */
-public class Matricula {
+public class Matricula implements Comparable<Matricula>{
 	private Alumne a;
 	private Assignatura as;
-	private Matricula seguentH; //Horitzontal
-	private Matricula seguentV; //Vertical
 	
-	public Matricula(Alumne a, Assignatura as, Matricula seguentH, Matricula seguentV) {
-		super();
+	public Matricula(Alumne a, Assignatura as) {
 		this.a = a;
 		this.as = as;
-		this.seguentH = seguentH;
-		this.seguentV = seguentV;
 	}
 
 	public Alumne getAlumne() {
@@ -36,25 +31,9 @@ public class Matricula {
 		this.as = as;
 	}
 
-	public Matricula getSeguentH() {
-		return seguentH;
-	}
-
-	public void setSeguentH(Matricula seguentH) {
-		this.seguentH = seguentH;
-	}
-
-	public Matricula getSeguentV() {
-		return seguentV;
-	}
-
-	public void setSeguentV(Matricula seguentV) {
-		this.seguentV = seguentV;
-	}
-
 	@Override
 	public String toString() {
-		return "Node [a=" + a + ", as=" + as + ", seguentH=" + seguentH + ", seguentV=" + seguentV + "]";
+		return "Node [a=" + a + ", as=" + as +"]";
 	}
 
 	public Matricula clone(){
