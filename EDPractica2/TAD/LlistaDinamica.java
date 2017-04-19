@@ -3,51 +3,83 @@ package TAD;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class LlistaDinamica<T extends Comparable<T>> implements Iterable<T> {
-	private T[] llista;
-	private int num;
+import Exceptions.LlistaBuida;
+import Exceptions.LlistaPlena;
+import Interfaces.TADLlistaGenerica;
+/**
+ * Classe per a crear les llistes dinamiques
+ * @author Cristina Izquierdo i Aleix Marine
+ *
+ * @param <T>
+ */
+public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGenerica<NodeDinamic<T>> {
+	private NodeDinamic ultim;
+	private NodeDinamic primer;
+	private int numElem;
 	
-	public LlistaDinamica(int dim) {
-		llista=(T[])new Comparable[dim];
-		num=0;
+	public LlistaDinamica() {
+		this.ultim = null;
+		this.primer = null;
+		numElem = 0;
 	}
 
-	public void afegirElement(T p) {
-		if (num>=llista.length) {
-			// amplio
-			T[] nova=(T[]) new Comparable[llista.length*2];
-			for (int i=0; i<llista.length; i++)
-				nova[i]=llista[i];
-			llista=nova;
-		}
-		// segur que tinc espai
-		int pos=num-1;
-		while ((pos>=0) && (p.compareTo(llista[pos])<0)) {
-			llista[pos+1]=llista[pos];
-			pos--;
-		}
-		llista[pos+1]=p;
-		num++;
-	}
 	
-	public T consultarIessim(int i) {
-		if (i<num) return(llista[i]);
-		else return(null);
+	public boolean afegir(NodeDinamic<T> a) {
+		//afegir
+		if (primer==null) this.primer=this.ultim; //si el primer encara no s'ha inicilitzat vol dir que estem al principi, llavors sera igual al ultim
+		numElem++;
+		return true; //sempre s'afegira, mai sera plena
 	}
-	
-	public int getNum() {
-		return num;
+
+	public NodeDinamic<T> esborrar(NodeDinamic<T> e) throws LlistaBuida {
+		if (numElem == 0)
+		{
+			throw new LlistaBuida(); //comprovem que la llista no estigui buida
+		}
+		else
+		{
+			T aux = (T) e.getObj(); //agafem el valor del objecte que esborrem
+			//esborrar node
+			numElem--;
+			return (NodeDinamic<T>) aux; //retornem el que hem esborrat
+		}
 	}
+
+	public int getNumElem() throws LlistaBuida {
+		return numElem;
+	}
+
+
+	public NodeDinamic getUltim() {
+		return ultim;
+	}
+
+
+	public void setUltim(NodeDinamic ultim) {
+		this.ultim = ultim;
+	}
+
+
+	public NodeDinamic getPrimer() {
+		return primer;
+	}
+
+
+	public void setPrimer(NodeDinamic primer) {
+		this.primer = primer;
+	}
+
+
+	public void setNumElem(int numElem) {
+		this.numElem = numElem;
+	}
+
 
 	@Override
 	public String toString() {
-		return "LlistaPunts [llista=" + Arrays.toString(llista) + ", num=" + num + "]";
+		return "LlistaDinamica [ultim=" + ultim + ", primer=" + primer + ", numElem=" + numElem + "]";
 	}
-
-	@Override
-	public Iterator<T> iterator() {
-		MeuIterator<T> pI=new MeuIterator<T>(this);
-		return pI;
-	}
+	
+	
 	
 }
