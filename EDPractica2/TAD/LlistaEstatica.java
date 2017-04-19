@@ -48,19 +48,14 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 			}
 			else
 			{
-				boolean trobat = false;	// flag d'objecte trobat
-				while (aux!=-1 && !trobat)	// mentre aux (ultim element consultat) no sigui l'ultim element (no apunti a -1)
-				// i no haguem trobat el objecte que correspon (per a l'ordre)
+				while (aux!=-1)	// mentre aux (ultim element consultat) no sigui l'ultim element (no apunti a -1)
 				{
 					int res = this.llista[aux].getObj().compareTo(a);	// Comparem l'element rebut per parametre amb el de la posicio actual
 					if (res == 0 )	// Si retorna 0 vol dir que es el mateix element
 					{
 						return false; //per tant sortim i retornem fals perque no hem d'afegir res
 					}
-					else if (res > 0) break;	//si retorna major que 0 vol dir que l'element al que apunta aux va alfabeticament
-					// despres de l'objecte rebut per parametre, per tant sortim del bucle.
-					else	// si el resultat de res es menor de -1, vol dir que l'objecte al que apunta aux va abans que l'objecte que
-					// passem per parametre, per tant actualitzem els cursors d'iteracio
+					else if (res > 0) break;//si retorna major que 0 vol dir que l'element al que apunta aux va alfabeticament despres de l'objecte rebut per parametre
 					{
 						preaux = aux;	//ara preaux apunta al seguent (aux)
 						aux = this.llista[aux].getCursor();	// ara aux apunta a l'element seguent, aquest cursor 
@@ -69,12 +64,21 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 				}
 			}
 			/**
-			 * Ja hem trobat l'element. Hem de conectar les referencies de tal manera que: preaux -> a -> aux
+			 *  Ja hem trobat l'element. Hem de conectar les referencies de tal manera que: preaux -> a -> aux
+			 * 	També pot passar que sigui la primera iteració i per tant calgui actualitzar el primer element. 
+			 * 	Per tant actualitzarem segons: primer -> a -> aux (l'antic primer)
 			 */
 			posicio = this.desapilarBuits();	// Obtenim la nova posicio on posarem el nou element
-			this.llista[preaux].setCursor(posicio);	// Assignem el cursor, que apuntara a la nova posicio
-			this.llista[posicio] = new ObjCursor<T>(a, aux);	// En la nova posicio buida creem un nou objecte. La referencia sera a aux llavors
-			// Llavors el cicle esta tancat
+			if (preaux == -1)	// Si preaux == -1, vol dir que es la primera iteracio , per tant cal actualitzar el primer.
+			{
+				this.primer = posicio;	// i fem que el primer sigui la posicio on hem d'inserir el primer element
+			}
+			else
+			{
+				this.llista[preaux].setCursor(posicio);	// Assignem el cursor, que apuntara a la nova posicio
+			}
+			this.llista[posicio] = new ObjCursor<T>(a, aux);	// En la nova posicio buida creem un nou objecte. La referencia sera 
+			//a aux llavors el cicle esta tancat. aux pot ser el seguent element o bé pot ser -1, si s'ha arribat al final de la taula
 			this.numElem++;	// incrementem el nombre d'elements
 			return true;	// Sortim
 		}

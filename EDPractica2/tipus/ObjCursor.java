@@ -1,20 +1,20 @@
 package tipus;
 
 public class ObjCursor <T extends Comparable<T>>{
-	private T Obj;
+	private T obj;
 	private int cursor;
 	
 	public ObjCursor (T Obj, int cursor){
-		this.Obj = Obj;
+		this.obj = Obj;
 		this.cursor = cursor;
 	}
 
 	public T getObj() {
-		return Obj;
+		return obj;
 	}
 
 	public void setObj(T obj) {
-		Obj = obj;
+		this.obj = obj;
 	}
 
 	public int getCursor() {
