@@ -12,9 +12,8 @@ import Interfaces.TADLlistaGenerica;
  *
  * @param <T>
  */
-public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGenerica<NodeDinamic<T>> {
-	private NodeDinamic ultim;
-	private NodeDinamic primer;
+public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGenerica<T> {
+	private T primer;
 	private int numElem;
 	
 	public LlistaDinamica() {
@@ -24,9 +23,15 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 	}
 
 	
-	public boolean afegir(NodeDinamic<T> a) {
-		//afegir
-		if (primer==null) this.primer=this.ultim; //si el primer encara no s'ha inicilitzat vol dir que estem al principi, llavors sera igual al ultim
+	public boolean afegir(T a) {
+		if (this.primer==null) 	//si el primer encara no s'ha inicilitzat vol dir que estem al principi, llavors sera igual al ultim
+		{
+			this.primer=a; 	
+		}
+		else
+		{
+			
+		}
 		numElem++;
 		return true; //sempre s'afegira, mai sera plena
 	}

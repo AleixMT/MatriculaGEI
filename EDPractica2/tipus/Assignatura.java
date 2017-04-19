@@ -10,6 +10,9 @@ public class Assignatura implements Comparable<Assignatura> {
 	private Integer credits;
 	private Integer curs;
 	private Integer quadrimestre;
+	
+	private Matricula ref;
+	private Assignatura seguent;
 /**
  * Rep els parametres per a crear la nova Assignatura 
  * @param codi
@@ -26,6 +29,14 @@ public class Assignatura implements Comparable<Assignatura> {
 	this.quadrimestre = quadrimestre;
 	
 }
+	
+	public Matricula getRef() {
+	return ref;
+	}
+
+	public void setRef(Matricula ref) {
+	this.ref = ref;
+	}
 
 	public Integer getCodi() {
 		return codi;
@@ -65,6 +76,14 @@ public class Assignatura implements Comparable<Assignatura> {
 
 	public void setQuadrimestre(Integer quadrimestre) {
 		this.quadrimestre = quadrimestre;
+	}
+	
+	public Assignatura getSeguent() {
+		return seguent;
+	}
+
+	public void setSeguent(Assignatura seguent) {
+		this.seguent = seguent;
 	}
 
 	public String toString() {

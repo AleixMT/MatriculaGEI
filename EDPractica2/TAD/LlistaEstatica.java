@@ -1,12 +1,13 @@
 package TAD;
 
 
+import tipus.ObjCursor;
 import Exceptions.LlistaBuida;
 import Exceptions.LlistaPlena;
 import Interfaces.*;
 
-public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGenerica<NodeEstatic<T>> {
-	private NodeEstatic<T>[] llista;
+public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGenerica<T> {
+	private ObjCursor<T>[] llista;
 	private int numElem;
 	private int primer;
 	
@@ -15,7 +16,7 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	
 	@SuppressWarnings("unchecked")
 	public LlistaEstatica(int dim) {
-		this.llista = (NodeEstatic<T>[]) new Comparable[dim];
+		this.llista = (ObjCursor[]) new Object[dim];
 		this.primer = -1;
 		this.numElem = 0;
 		
@@ -30,43 +31,52 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		this.numElemsbuits=dim;
 	}
 
-	public boolean afegir(NodeEstatic<T> a) throws LlistaPlena {
-		if (!this.esPlena())
+	public boolean afegir(T a) throws LlistaPlena {
+		int posicio;
+		int preaux = -1; // preaux fara referencia a l'element just anterior. Inicialitzem en -1 de manera arbitraria		
+		int aux = this.primer;	// aux salvara la posicio del primer		
+		if (!this.esPlena())	//Si no esta plena, afegim un element
 		{
-			int aux = this.primer;
-			int preaux = -1;
-			boolean trobat = false;
-			int posicio;
-			if (this.esBuida())
+			if (this.esBuida()) //si la llista esta buida procedirem diferent
 			{
-				posicio = this.desapilarBuits();
-				this.primer = posicio;
-				this.llista[posicio] = a;
-				this.numElem++;
+				posicio = this.desapilarBuits();	// Treiem un enter de la llista de buits
+				this.primer = posicio;				//Fem que el primer apunti a aquesta posicio (ja que sera la primera)
+				this.llista[posicio] = new ObjCursor<T>(a, -1);		// En aquesta posicio creem un nou objecte ObjCursor, passantli l'objecte
+				// rebut per parametre i com a referencia posarem -1, ja que sera l'ultim element
+				this.numElem++; // modifiquem el nombre d'elements en consecuencia
+				return true; // Com hem afegit, sortim
 			}
 			else
 			{
-				while (aux!=-1 && !trobat)
+				boolean trobat = false;	// flag d'objecte trobat
+				while (aux!=-1 && !trobat)	// mentre aux (ultim element consultat) no sigui l'ultim element (no apunti a -1)
+				// i no haguem trobat el objecte que correspon (per a l'ordre)
 				{
-					int res = this.llista[aux].getObj().compareTo(a.getObj());
-					if (res == 0 )
+					int res = this.llista[aux].getObj().compareTo(a);	// Comparem l'element rebut per parametre amb el de la posicio actual
+					if (res == 0 )	// Si retorna 0 vol dir que es el mateix element
 					{
-						return false;
+						return false; //per tant sortim i retornem fals perque no hem d'afegir res
 					}
-					else if (res < 0) break;
-					else
+					else if (res > 0) break;	//si retorna major que 0 vol dir que l'element al que apunta aux va alfabeticament
+					// despres de l'objecte rebut per parametre, per tant sortim del bucle.
+					else	// si el resultat de res es menor de -1, vol dir que l'objecte al que apunta aux va abans que l'objecte que
+					// passem per parametre, per tant actualitzem els cursors d'iteracio
 					{
-						preaux = aux;
-						aux = this.llista[aux].getRef();
+						preaux = aux;	//ara preaux apunta al seguent (aux)
+						aux = this.llista[aux].getCursor();	// ara aux apunta a l'element seguent, aquest cursor 
+						// l'obtenim preguntant-li el seu cursor a l'element al que apuntava aux abans d'actualitzar-se.
 					}
 				}
 			}
-			posicio = this.desapilarBuits();
-			this.llista[preaux].setRef(posicio);
-			a.setRef(aux);
-			this.llista[posicio] = a;
-			this.numElem++;
-			return true;
+			/**
+			 * Ja hem trobat l'element. Hem de conectar les referencies de tal manera que: preaux -> a -> aux
+			 */
+			posicio = this.desapilarBuits();	// Obtenim la nova posicio on posarem el nou element
+			this.llista[preaux].setCursor(posicio);	// Assignem el cursor, que apuntara a la nova posicio
+			this.llista[posicio] = new ObjCursor<T>(a, aux);	// En la nova posicio buida creem un nou objecte. La referencia sera a aux llavors
+			// Llavors el cicle esta tancat
+			this.numElem++;	// incrementem el nombre d'elements
+			return true;	// Sortim
 		}
 		else
 		{
@@ -75,7 +85,7 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		
 	}
 
-	public NodeEstatic<T> esborrar(NodeEstatic<T> e) throws LlistaBuida {
+	public T esborrar(T e) throws LlistaBuida {
 
 		return null;
 	}
@@ -88,6 +98,7 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	
 	public void apilarBuits(int n){
 		this.buits[this.numElemsbuits]=n;
+		this.numElemsbuits++;
 	}
 	
 	public boolean buitsEsPlena()
@@ -117,44 +128,24 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	{
 		return this.numElem == 0;
 	}
-	
-	public int getNumElem() throws LlistaBuida {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	public int compareTo(NodeEstatic<T> c) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public boolean equals() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public NodeEstatic<T> next() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public IteratorEstatic<T> Iterator()
+	public Iterator<T> Iterator()
 	{
-		return new IteratorEstatic<T>(this);
+		return new Iterator<T>(this);
 	}
 
-	public NodeEstatic<T> consultar(NodeEstatic<T> c) {
+	public T consultar(T c) {
 		int aux = this.primer;
 		while (aux!=-1)
 		{
-			if (this.llista[aux].getObj().equals(c.getObj())) return this.llista[aux];
+			if (this.llista[aux].getObj().equals(c)) return this.llista[aux].getObj();
+			else aux = llista[aux].getCursor();
 		}
 		return null;
+	}
+
+	public int getNumElem(){
+		return this.numElem;
 	}
 	
 }

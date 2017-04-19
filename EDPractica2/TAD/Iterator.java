@@ -2,12 +2,12 @@ package TAD;
 
 
 
-public class IteratorEstatic<T extends Comparable<T>> {
+public class Iterator<T extends Comparable<T>> {
 	private NodeEstatic<T>[] llista;	//nou atribut que ens guardar� una copia de la llista actual de punts
 	private int posicioIterator;
 	private int numElem;
 	
-	public IteratorEstatic(LlistaEstatica<T> ll) {
+	public Iterator(LlistaEstatica<T> ll) {
 		int aux = ll.getPrimer();
 		this.posicioIterator=0;
 		while (aux!=-1)

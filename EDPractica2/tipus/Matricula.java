@@ -7,33 +7,70 @@ package tipus;
  *
  */
 public class Matricula implements Comparable<Matricula>{
-	private Alumne a;
-	private Assignatura as;
+	private Alumne alumne;
+	private Assignatura assignatura;
 	
-	public Matricula(Alumne a, Assignatura as) {
-		this.a = a;
-		this.as = as;
+	private Matricula seguentH;
+	private Matricula seguentV;
+	
+	public Matricula(Alumne a, Assignatura as, Matricula seguentH, Matricula seguentV) {
+		this.alumne = a;
+		this.assignatura = as;
+		this.seguentH=seguentH;
+		this.seguentV=seguentV;
 	}
 
 	public Alumne getAlumne() {
-		return a;
+		return alumne;
 	}
 
 	public void setAlumne(Alumne a) {
-		this.a = a;
+		this.alumne = a;
 	}
 
 	public Assignatura getAssignatura() {
-		return as;
+		return assignatura;
 	}
 
 	public void setAssignatura(Assignatura as) {
-		this.as = as;
+		this.assignatura = as;
+	}
+
+	public Alumne getA() {
+		return alumne;
+	}
+
+	public void setA(Alumne a) {
+		this.alumne = a;
+	}
+
+	public Assignatura getAs() {
+		return assignatura;
+	}
+
+	public void setAs(Assignatura as1) {
+		assignatura = as1;
+	}
+
+	public Matricula getSeguentH() {
+		return seguentH;
+	}
+
+	public void setSeguentH(Matricula seguentH) {
+		this.seguentH = seguentH;
+	}
+
+	public Matricula getSeguentV() {
+		return seguentV;
+	}
+
+	public void setSeguentV(Matricula seguentV) {
+		this.seguentV = seguentV;
 	}
 
 	@Override
 	public String toString() {
-		return "Node [a=" + a + ", as=" + as +"]";
+		return "Node [a=" + alumne + ", as=" + assignatura +"]";
 	}
 
 	public Matricula clone(){
@@ -41,14 +78,14 @@ public class Matricula implements Comparable<Matricula>{
 	}
 	
 	public boolean equals(Matricula e){
-		return (this.a.equals(e.getAlumne()) && this.as.equals(e.getAssignatura()));
+		return (this.alumne.equals(e.getAlumne()) && this.assignatura.equals(e.getAssignatura()));
 	}
 	
 	public int compareTo(Matricula e){
-		if (this.a.compareTo(e.getAlumne()) < 0) return -1;
-		if (this.a.compareTo(e.getAlumne()) > 0) return 1;
-		if (this.as.compareTo(e.getAssignatura()) < 0) return -1;
-		if (this.as.compareTo(e.getAssignatura()) > 0) return 1;
+		if (this.alumne.compareTo(e.getAlumne()) < 0) return -1;
+		if (this.alumne.compareTo(e.getAlumne()) > 0) return 1;
+		if (this.assignatura.compareTo(e.getAssignatura()) < 0) return -1;
+		if (this.assignatura.compareTo(e.getAssignatura()) > 0) return 1;
 		return 0;
 
 	}
