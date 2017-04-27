@@ -88,56 +88,84 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		}
 		
 	}
-
+	/**
+	 * Aquest es un metode que s'hauria d'implementar seguint la idea de la llista, però pell problema que s'ens planteja no
+	 * ecessitem necessariament aquest métode
+	 */
 	public T esborrar(T e) throws LlistaBuida {
 
 		return null;
 	}
 
-	
+	/**
+	 * Serveix per a obtenir una nova posició lliure de la taula per a emmagatzemar un nou element.
+	 * També decrementa el nombre d'elements en la pila de buits 
+	 * @return retorna un int, que es la posicio on pot ser inserit l'element
+	 */
 	public int desapilarBuits(){
 		this.numElemsbuits--;
 		return this.buits[this.numElemsbuits];
 	}
 	
+	/**
+	 * Serveix per a guardar una posició lliure de la taula per a emmagatzemar un nou element.
+	 * També augmenta el nombre d'elements disponibles en la pila de buits 
+	 */
 	public void apilarBuits(int n){
 		this.buits[this.numElemsbuits]=n;
 		this.numElemsbuits++;
 	}
 	
+	/**
+	 * Serveix per a comprovar que la taula de buits estigui plena.
+	 * Si ho está retornem un boolea que ho indica
+	 * @return true si esta plena, false si esta buida
+	 */
 	public boolean buitsEsPlena()
 	{
-		if (this.buits.length == this.numElemsbuits)
-		{
-			return true;
-		}
-		else return false;
+		return this.buits.length == this.numElemsbuits;
 	}
 	
+	/**
+	 * Serveix per a comprovar que la taula de buits estigui buida
+	 * @return true si esta buida, false si esta buida
+	 */
 	public boolean buitsEsBuida()
 	{
-		if (this.numElemsbuits==0)
-		{
-			return true;
-		}
-		else return false;
+		return this.numElemsbuits==0;
 	}
 	
+	/**
+	 * comprova que la taula principal d'elements genérics estigui plena
+	 * @return true si esta plena, sinó false
+	 */
 	public boolean esPlena()
 	{
 		return this.llista.length == this.numElem;
 	}
 	
+	/**
+	 * comprova que la taula principal d'elements genérics estigui buida
+	 * @return true si esta buida, sinó false
+	 */
 	public boolean esBuida()
 	{
 		return this.numElem == 0;
 	}
-
+	
+	/**
+	 * Crea un nou iterador per a la propia classe i ho retorna
+	 * @return objecte iterable de la llista
+	 */
 	public Iterator<T> Iterator()
 	{
 		return new Iterator<T>(this);
 	}
 
+	/**
+	 * Rep un objecte generic per parametre i el busca al llarg de tota la llista.
+	 * Si el troba el retorna, sino retorna null.
+	 */
 	public T consultar(T c) {
 		int aux = this.primer;
 		while (aux!=-1)
@@ -147,9 +175,51 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Getter del nombre d'elements a la llista
+	 */
 	public int getNumElem(){
 		return this.numElem;
+	}
+	
+	/*
+	 * Getters dels diferents antributs de la classe
+	 */
+	public ObjCursor<T>[] getLlista() {
+		return llista;
+	}
+
+	public void setLlista(ObjCursor<T>[] llista) {
+		this.llista = llista;
+	}
+
+	public int getPrimer() {
+		return primer;
+	}
+
+	public void setPrimer(int primer) {
+		this.primer = primer;
+	}
+
+	public int[] getBuits() {
+		return buits;
+	}
+
+	public void setBuits(int[] buits) {
+		this.buits = buits;
+	}
+
+	public int getNumElemsbuits() {
+		return numElemsbuits;
+	}
+
+	public void setNumElemsbuits(int numElemsbuits) {
+		this.numElemsbuits = numElemsbuits;
+	}
+
+	public void setNumElem(int numElem) {
+		this.numElem = numElem;
 	}
 	
 }

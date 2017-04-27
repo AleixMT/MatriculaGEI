@@ -76,12 +76,19 @@ public class Alumne implements Comparable<Alumne>{
 
 
 	/**
-	 * M�tode per a comparar un alumne amb un altre mitjan�ant el seu nom
+	 * M�tode per a comparar un alumne amb un altre mitjan�ant el seu nom a partir de una instancia d'alumne 
 	 */
 	public int compareTo(Alumne o) {
 		return (this.nom.compareTo(o.nom));
 	}
-
+	
+	/**
+	 * M�tode per a comparar un alumne amb un altre mitjancant el codi d'alumne aportat per un string
+	 */
+	public int compareTo(String codi) {
+		return (this.codi.compareTo(codi));
+	}
+	
 	/**
 	 * M�tode toString de la classe Alumne
 	 */

@@ -1,5 +1,6 @@
 package Interfaces;
 
+import TAD.Iterator;
 import Exceptions.*;
 
 /**
@@ -7,14 +8,14 @@ import Exceptions.*;
  * @author Cristina Izquierdo i Aleix Marin�
  *
  */
-public abstract interface TADLlistaGenerica<E> {
+public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
 	
 	/**
 	 * Afegeix un element a la llista
 	 * @param a - element a afegir
 	 * @throws LlistaPlena
 	 */
-	public boolean afegir(E a) throws LlistaPlena;
+	public boolean afegir(T a) throws LlistaPlena;
 	
 	/**
 	 * Esborra un element de la llista
@@ -22,7 +23,7 @@ public abstract interface TADLlistaGenerica<E> {
 	 * @return element esborrat
 	 * @throws LlistaBuida
 	 */
-	public E esborrar(E e) throws LlistaBuida;
+	public T esborrar(T e) throws LlistaBuida;
 	
 	/**
 	 * Consulta un element de la llista
@@ -30,7 +31,7 @@ public abstract interface TADLlistaGenerica<E> {
 	 * @return element a consultar
 	 * @throws LlistaBuida
 	 */
-	public E consultar(E c);
+	public T consultar(T c);
 	
 	/**
 	 * Getter del n�mero d'elements
@@ -38,7 +39,13 @@ public abstract interface TADLlistaGenerica<E> {
 	 * @throws LlistaBuida
 	 */
 	public int getNumElem();
-
+	
+	/**
+	 * Crea un nou iterador per a la propia classe i ho retorna
+	 * @return objecte iterable de la llista
+	 */
+	public Iterator<T> Iterator();
+	
 	/**
 	 * m�tode toString
 	 * @return String amb els elements de la llista
