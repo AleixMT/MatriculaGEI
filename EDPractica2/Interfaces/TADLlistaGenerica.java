@@ -8,7 +8,7 @@ import Exceptions.*;
  * @author Cristina Izquierdo i Aleix Marin�
  *
  */
-public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
+public abstract interface TADLlistaGenerica<T extends Comparable<T>, E> {
 	
 	/**
 	 * Afegeix un element a la llista
@@ -31,7 +31,7 @@ public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
 	 * @return element a consultar
 	 * @throws LlistaBuida
 	 */
-	public T consultar(T c);
+	public E consultar(T c);
 	
 	/**
 	 * Getter del n�mero d'elements
@@ -44,7 +44,7 @@ public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
 	 * Crea un nou iterador per a la propia classe i ho retorna
 	 * @return objecte iterable de la llista
 	 */
-	public Iterator<T> Iterator();
+	public Iterator<T, E> Iterator();
 	
 	/**
 	 * m�tode toString

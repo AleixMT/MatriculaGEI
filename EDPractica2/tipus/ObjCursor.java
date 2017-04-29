@@ -1,10 +1,11 @@
 package tipus;
 
-public class ObjCursor <T extends Comparable<T>>{
+public class ObjCursor <T extends Comparable<T>> extends Obj{
 	private T obj;
 	private int cursor;
 	
 	public ObjCursor (T Obj, int cursor){
+		super();
 		this.obj = Obj;
 		this.cursor = cursor;
 	}
@@ -24,6 +25,4 @@ public class ObjCursor <T extends Comparable<T>>{
 	public void setCursor(int cursor) {
 		this.cursor = cursor;
 	}
-	
-	
 }

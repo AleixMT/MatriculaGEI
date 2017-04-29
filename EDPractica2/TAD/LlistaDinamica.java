@@ -1,20 +1,14 @@
 package TAD;
-
-import java.util.Arrays;
-import java.util.Iterator;
-
 import tipus.ObjReferencia;
-
 import Exceptions.LlistaBuida;
-import Exceptions.LlistaPlena;
-import Interfaces.TADLlistaGenerica;
+import Interfaces.*;
 /**
  * Classe per a crear les llistes dinamiques
  * @author Cristina Izquierdo i Aleix Marine
  *
  * @param <T>
  */
-public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGenerica<T> {
+public class LlistaDinamica<T extends Comparable<T>, E> implements TADLlistaGenerica<T, E> {
 	private ObjReferencia<T> primer;
 	private int numElem;
 	
@@ -55,56 +49,39 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 		numElem++;	// Part constant, afegim un element
 		return true; //sempre s'afegira, mai sera plena
 	}
-
+	
+	/**
+	 * Métode d'esborrat. No el farem servir així que no és necessari
+	 */
 	public T esborrar(T e) throws LlistaBuida {
-		if (numElem == 0)
-		{
-			throw new LlistaBuida(); //comprovem que la llista no estigui buida
+		return null;
+	}
+
+	/**
+	 * Busca un objecte T a la llista igual que el passat per parámetre i retorna l'objecte E wrapper de la llista 
+	 */
+	@SuppressWarnings("unchecked")
+	public E consultar(T c) {
+		ObjReferencia<T> aux = primer;
+		while (aux!=null){
+			if (aux.getObj().equals(c)) return (E)aux.getObj();
+			aux = aux.getRef();
 		}
-		else
-		{
-			T aux = (T) e.getObj(); //agafem el valor del objecte que esborrem
-			//esborrar node
-			numElem--;
-			return (NodeDinamic<T>) aux; //retornem el que hem esborrat
-		}
-	}
-
-	public int getNumElem() throws LlistaBuida {
-		return numElem;
-	}
-
-
-	public NodeDinamic getUltim() {
-		return ultim;
-	}
-
-
-	public void setUltim(NodeDinamic ultim) {
-		this.ultim = ultim;
-	}
-
-
-	public NodeDinamic getPrimer() {
-		return primer;
-	}
-
-
-	public void setPrimer(NodeDinamic primer) {
-		this.primer = primer;
-	}
-
-
-	public void setNumElem(int numElem) {
-		this.numElem = numElem;
-	}
-
-
-	@Override
-	public String toString() {
-		return "LlistaDinamica [ultim=" + ultim + ", primer=" + primer + ", numElem=" + numElem + "]";
+		return null;
 	}
 	
-	
-	
+	/**
+	 * Métode iterator. Retorna un objecte iterable d'aquesta classe
+	 */
+	public Iterator<T, E> Iterator()
+	{
+		return new Iterator<T, E>(this);
+	}
+
+	/** 
+	 * getters i setters
+	 */
+	public ObjReferencia<T> getPrimer() { return primer;}
+	public int getNumElem() { return this.numElem;}
+	public void setPrimer(ObjReferencia<T> primer) {this.primer = primer;}
 }

@@ -1,10 +1,11 @@
 package tipus;
 
-public class ObjReferencia <T extends Comparable<T>>{
+public class ObjReferencia <T extends Comparable<T>> extends Obj{
 	private T obj;
 	private ObjReferencia<T> ref;
 	
 	public ObjReferencia(T obj, ObjReferencia<T> ref){
+		super();
 		this.obj = obj;
 		this.ref = ref;
 	}
@@ -24,6 +25,7 @@ public class ObjReferencia <T extends Comparable<T>>{
 	public void setRef(ObjReferencia<T> ref) {
 		this.ref = ref;
 	}
+
 	
 	
 }

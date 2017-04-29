@@ -3,12 +3,12 @@ package TAD;
 import tipus.*;
 
 
-public class Iterator<T extends Comparable<T>> {
+public class Iterator<T extends Comparable<T>, E> {
 	private T[] llista;	//nou atribut per guardar objectes
 	private int posicioIterator; //Posicio de l'iterador
 	private int numElem=0;	//nombre d'elements
 	
-	public Iterator(LlistaEstatica<T> ll) {
+	public Iterator(LlistaEstatica<T,E> ll) {
 		int aux = ll.getPrimer();	// aux sera el nostre cursor temporal
 		this.posicioIterator=0;		// reaprofitem la variable de la posicio de l'iterador
 		while (aux!=-1)	// mentre la referencia no sigui -1, iterarem sobre la llista
@@ -21,6 +21,14 @@ public class Iterator<T extends Comparable<T>> {
 		this.numElem = ll.getNumElem();		// Actualitzem el nombre d'elements, que sera el mateix nombre d'elements que a la llista
 	}
 	
+	public Iterator (LlistaDinamica<T,ObjNode<T>> ll){
+		
+	}
+	
+	/**
+	 * Els sseguent metodes no funcionen
+	 * @param a
+	 */
 	@SuppressWarnings("unchecked")
 	public Iterator(Alumne a)
 	{
@@ -46,6 +54,10 @@ public class Iterator<T extends Comparable<T>> {
 		}
 		this.posicioIterator=0;
 	}
+	public Iterator(LlistaJavaUtil<T, E> llistaJavaUtil) {
+		
+	}
+
 	/**
 	 * retorna cert si encara no hem arribat a l'últim element, és a dir, si hi ha "next"
 	 * @return true si hi ha un altre element, false si no.

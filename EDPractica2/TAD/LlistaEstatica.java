@@ -6,7 +6,7 @@ import Exceptions.LlistaBuida;
 import Exceptions.LlistaPlena;
 import Interfaces.*;
 
-public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGenerica<T> {
+public class LlistaEstatica<T extends Comparable<T>, E> implements TADLlistaGenerica<T,E> {
 	private ObjCursor<T>[] llista;
 	private int numElem;
 	private int primer;
@@ -157,20 +157,21 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	 * Crea un nou iterador per a la propia classe i ho retorna
 	 * @return objecte iterable de la llista
 	 */
-	public Iterator<T> Iterator()
+	public Iterator<T,E> Iterator()
 	{
-		return new Iterator<T>(this);
+		return new Iterator<T, E>(this);
 	}
 
 	/**
 	 * Rep un objecte generic per parametre i el busca al llarg de tota la llista.
 	 * Si el troba el retorna, sino retorna null.
 	 */
-	public T consultar(T c) {
+	@SuppressWarnings("unchecked")
+	public E consultar(T c) {
 		int aux = this.primer;
 		while (aux!=-1)
 		{
-			if (this.llista[aux].getObj().equals(c)) return this.llista[aux].getObj();
+			if (this.llista[aux].getObj().equals(c)) return (E)this.llista[aux];
 			else aux = llista[aux].getCursor();
 		}
 		return null;
