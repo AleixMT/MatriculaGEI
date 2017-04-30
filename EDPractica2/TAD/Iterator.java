@@ -2,18 +2,18 @@ package TAD;
 
 import tipus.*;
 
-
-public class Iterator<T extends Comparable<T>, E> {
-	private T[] llista;	//nou atribut per guardar objectes
+public class Iterator<T extends Comparable<T>> {
+	private Obj<T>[] llista;	//nou atribut per guardar objectes
 	private int posicioIterator; //Posicio de l'iterador
 	private int numElem=0;	//nombre d'elements
 	
-	public Iterator(LlistaEstatica<T,E> ll) {
+	
+	public Iterator(LlistaEstatica<T> ll) {
 		int aux = ll.getPrimer();	// aux sera el nostre cursor temporal
 		this.posicioIterator=0;		// reaprofitem la variable de la posicio de l'iterador
 		while (aux!=-1)	// mentre la referencia no sigui -1, iterarem sobre la llista
 		{
-			this.llista[this.posicioIterator] = ll.getLlista()[aux].getObj();	// assignem a la posicio actual de l'index l'objecte de la seguent posicio
+			this.llista[this.posicioIterator] = ll.getLlista()[aux];	// assignem a la posicio actual de l'index l'objecte de la seguent posicio
 			this.posicioIterator++;		// Incrementem l'index
 			aux = ll.getLlista()[aux].getCursor();	// actualitzem el cursor
 		}
@@ -21,43 +21,44 @@ public class Iterator<T extends Comparable<T>, E> {
 		this.numElem = ll.getNumElem();		// Actualitzem el nombre d'elements, que sera el mateix nombre d'elements que a la llista
 	}
 	
-	public Iterator (LlistaDinamica<T,ObjNode<T>> ll){
+	public Iterator (LlistaDinamica<T> ll){
 		
 	}
 	
+	public Iterator (LlistaJavaUtil<T> ll){
+		
+	}
 	/**
 	 * Els sseguent metodes no funcionen
 	 * @param a
-	 */
+	 **/
 	@SuppressWarnings("unchecked")
-	public Iterator(Alumne a)
+	public Iterator(Obj<Alumne> a, Alumne identificatiudelconstructor)
 	{
-		Matricula aux = a.getRef();
-		while (aux!=null)
-		{
-			this.llista[this.numElem] = (T)aux;
-			aux = aux.getSeguentH();
-			this.numElem++;
-		}
-		this.posicioIterator=0;
-	}
+			Matricula aux = a.getNode();
+			while (aux!=null)
+			{
+				this.llista[this.numElem] = (Obj<T>)new Obj<Matricula>(aux);
+				aux = aux.getSeguentV();
+				this.numElem++;
+			}
+			this.posicioIterator=0;
+			
+			
+	}	
 	
 	@SuppressWarnings("unchecked")
-	public Iterator(Assignatura as)
-	{
-		Matricula aux = as.getRef();
-		while (aux!=null)
+	public Iterator(Obj<Assignatura> a, Assignatura identificatiudelconstructor)
+	{ 
+		Matricula auxx = a.getNode();
+		while (auxx!=null)
 		{
-			this.llista[this.numElem] = (T)aux;
-			aux = aux.getSeguentV();
+			this.llista[this.numElem] = (Obj<T>)new Obj<Matricula>(auxx);
+			auxx = auxx.getSeguentH();
 			this.numElem++;
 		}
 		this.posicioIterator=0;
 	}
-	public Iterator(LlistaJavaUtil<T, E> llistaJavaUtil) {
-		
-	}
-
 	/**
 	 * retorna cert si encara no hem arribat a l'últim element, és a dir, si hi ha "next"
 	 * @return true si hi ha un altre element, false si no.
@@ -70,8 +71,8 @@ public class Iterator<T extends Comparable<T>, E> {
 	 * Retornem el següent element T i incrementem la posicio de l'iterador
 	 * @return segent element T
 	 */
-	public T next() {
-		T aux = this.llista[posicioIterator];
+	public Obj<T> next() {
+		Obj<T> aux = this.llista[posicioIterator];
 		posicioIterator++;
 		return aux;
 	}

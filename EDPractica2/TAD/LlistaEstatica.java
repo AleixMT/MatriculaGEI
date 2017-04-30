@@ -1,12 +1,13 @@
 package TAD;
 
 
+import tipus.Obj;
 import tipus.ObjCursor;
 import Exceptions.LlistaBuida;
 import Exceptions.LlistaPlena;
 import Interfaces.*;
 
-public class LlistaEstatica<T extends Comparable<T>, E> implements TADLlistaGenerica<T,E> {
+public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGenerica<T> {
 	private ObjCursor<T>[] llista;
 	private int numElem;
 	private int primer;
@@ -16,7 +17,7 @@ public class LlistaEstatica<T extends Comparable<T>, E> implements TADLlistaGene
 	
 	@SuppressWarnings("unchecked")
 	public LlistaEstatica(int dim) {
-		this.llista = (ObjCursor[]) new Object[dim];
+		this.llista = (ObjCursor<T>[]) new ObjCursor[dim];
 		this.primer = -1;
 		this.numElem = 0;
 		
@@ -24,7 +25,7 @@ public class LlistaEstatica<T extends Comparable<T>, E> implements TADLlistaGene
 		
 		//Anem carregant les posicions buides. Desapilarem a la posicio numElemsBuits, de tal manera que les carregarem
 		//a la inversa, tenint les posicions buides amb menor index en les posicions de major index en buits[]
-		for (int i=buits.length; i>-1; i--)
+		for (int i=buits.length-1; i>-1; i--)
 		{
 			this.buits[i] = i;
 		}
@@ -157,21 +158,20 @@ public class LlistaEstatica<T extends Comparable<T>, E> implements TADLlistaGene
 	 * Crea un nou iterador per a la propia classe i ho retorna
 	 * @return objecte iterable de la llista
 	 */
-	public Iterator<T,E> Iterator()
+	public Iterator<T> Iterator()
 	{
-		return new Iterator<T, E>(this);
+		return new Iterator<T>(this);
 	}
 
 	/**
 	 * Rep un objecte generic per parametre i el busca al llarg de tota la llista.
 	 * Si el troba el retorna, sino retorna null.
 	 */
-	@SuppressWarnings("unchecked")
-	public E consultar(T c) {
+	public Obj<T> consultar(T c) {
 		int aux = this.primer;
 		while (aux!=-1)
 		{
-			if (this.llista[aux].getObj().equals(c)) return (E)this.llista[aux];
+			if (this.llista[aux].getObj().equals(c)) return (Obj<T>)this.llista[aux];
 			else aux = llista[aux].getCursor();
 		}
 		return null;

@@ -1,6 +1,6 @@
 package TAD;
+import tipus.Obj;
 import tipus.ObjReferencia;
-import Exceptions.LlistaBuida;
 import Interfaces.*;
 /**
  * Classe per a crear les llistes dinamiques
@@ -8,7 +8,7 @@ import Interfaces.*;
  *
  * @param <T>
  */
-public class LlistaDinamica<T extends Comparable<T>, E> implements TADLlistaGenerica<T, E> {
+public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGenerica<T> {
 	private ObjReferencia<T> primer;
 	private int numElem;
 	
@@ -53,18 +53,17 @@ public class LlistaDinamica<T extends Comparable<T>, E> implements TADLlistaGene
 	/**
 	 * Métode d'esborrat. No el farem servir així que no és necessari
 	 */
-	public T esborrar(T e) throws LlistaBuida {
+	public T esborrar(T e) throws Exceptions.LlistaBuida {
 		return null;
 	}
 
 	/**
-	 * Busca un objecte T a la llista igual que el passat per parámetre i retorna l'objecte E wrapper de la llista 
+	 * Busca un objecte T a la llista igual que el passat per parámetre i retorna l'objecte Obj wrapper de la llista 
 	 */
-	@SuppressWarnings("unchecked")
-	public E consultar(T c) {
+	public Obj<T> consultar(T c) {
 		ObjReferencia<T> aux = primer;
 		while (aux!=null){
-			if (aux.getObj().equals(c)) return (E)aux.getObj();
+			if (aux.getObj().equals(c)) return (Obj<T>)aux;
 			aux = aux.getRef();
 		}
 		return null;
@@ -73,9 +72,9 @@ public class LlistaDinamica<T extends Comparable<T>, E> implements TADLlistaGene
 	/**
 	 * Métode iterator. Retorna un objecte iterable d'aquesta classe
 	 */
-	public Iterator<T, E> Iterator()
+	public Iterator<T> Iterator()
 	{
-		return new Iterator<T, E>(this);
+		return new Iterator<T>(this);
 	}
 
 	/** 

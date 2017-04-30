@@ -8,9 +8,6 @@ package tipus;
 public class Alumne implements Comparable<Alumne>{
 	private String codi;
 	private String nom;
-	
-	private Matricula ref;
-	private Alumne seguent;
 	/**
 	 * M�tode constructor per la classe alumne
 	 * @param codi: codi de l'alumne
@@ -53,27 +50,6 @@ public class Alumne implements Comparable<Alumne>{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
-	public Matricula getRef() {
-		return ref;
-	}
-
-
-	public void setRef(Matricula ref) {
-		this.ref = ref;
-	}
-	
-	
-
-	public Alumne getSeguent() {
-		return seguent;
-	}
-
-
-	public void setSeguent(Alumne seguent) {
-		this.seguent = seguent;
-	}
-
 
 	/**
 	 * M�tode per a comparar un alumne amb un altre mitjan�ant el seu nom a partir de una instancia d'alumne 

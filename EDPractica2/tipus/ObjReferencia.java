@@ -1,21 +1,11 @@
 package tipus;
 
-public class ObjReferencia <T extends Comparable<T>> extends Obj{
-	private T obj;
+public class ObjReferencia <T extends Comparable<T>> extends Obj<T>{
 	private ObjReferencia<T> ref;
 	
 	public ObjReferencia(T obj, ObjReferencia<T> ref){
-		super();
-		this.obj = obj;
+		super(obj);
 		this.ref = ref;
-	}
-
-	public T getObj() {
-		return obj;
-	}
-
-	public void setObj(T obj) {
-		this.obj = obj;
 	}
 
 	public ObjReferencia<T> getRef() {

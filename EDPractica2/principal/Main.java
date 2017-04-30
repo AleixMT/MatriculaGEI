@@ -7,6 +7,7 @@ import Interfaces.*;
 import TAD.*;
 import tipus.Alumne;
 import tipus.Assignatura;
+import tipus.Matricula;
 
 
 public class Main {
@@ -16,9 +17,10 @@ public class Main {
 	 * Metode per a interaccionar amb l'usuari sobre si vol encriptar o desencriptar
 	 * @return opcio escollida (1-encriptar, 2-desencriptar)
 	 */
-	public static void consultes(){ //mostra les consultes
-		boolean exit=false;
+	public static void consultes(Multillista tad){ //mostra les consultes
 		int opt=0;
+		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
+		boolean exit = false;
 		while (!exit) //mentre que el usuari no indiqui l'estructura iterarem
 		{
 			System.out.println("Quina consulta vols fer?");
@@ -30,9 +32,11 @@ public class Main {
 			try
 			{
 				opt=teclat.nextInt();
+				ti=System.nanoTime();
 				switch(opt) {
 				case 1: 
-					// Creem llistes i dades necessaries per a construir la multillista
+					String entry = teclat.next();
+					tad.sumariAlumne(entry);
 					break;
 				case 2: 
 					// Creem llistes i dades necessaries per a construir la multillista
@@ -49,10 +53,12 @@ public class Main {
 				default: System.out.println("Aquesta opcio no esta a la llista... \n");
 				break;	//Funciona com una excepcio per a un valor numeric no acceptat
 				}
+				tf = System.nanoTime();
+				System.out.println("Ha tardat "+ (tf-ti)+ " segons");
 			}
 			catch (InputMismatchException e) 
 			{
-				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una opció incorrecta, torna-ho a intentar \n");
+				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una opciï¿½ incorrecta, torna-ho a intentar \n");
                 teclat.nextLine(); 
 			}
 		}
@@ -64,7 +70,7 @@ public class Main {
 	 * @param file -- fitxer a llegir
 	 * @throws LlistaPlena 
 	 */
-	public static void llegirFitxer(TADLlistaGenerica tad) throws LlistaPlena{
+	public static void llegirFitxer(Multillista tad) throws LlistaPlena{
 		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
 		teclat.nextLine(); //flush
 		String aux = "";
@@ -86,11 +92,13 @@ public class Main {
 				//codi assignatura;nom assignatura;credits;curs;quadrimestre;codi alumne;nom alumne
 				//crear instancia d'assignatura		
 				Assignatura ass = new Assignatura(Integer.parseInt(content[0]), content[1], Integer.parseInt(content[2]), Integer.parseInt(content[3]), Integer.parseInt(content[4]));
-				
+				tad.getAs().afegir(ass);
 				//crear instancia d'alumne
 				Alumne a = new Alumne(content[5], content[6]);
+				tad.getA().afegir(a);
 				
 				//Anar afegint relacions a la multillista
+				tad.afegir(new Matricula(a, ass, null, null)) ;
 				//tad.afegir(ass, a);
 	           } 
 			buffer.close();
@@ -103,9 +111,9 @@ public class Main {
 		}
 	}
 	
-	public static TADLlistaGenerica menu(){ //mostra el menu i inicialitza el TAD
+	public static Multillista menu(){ //mostra el menu i inicialitza el TAD
 		int opt=0;
-		TADLlistaGenerica tad = null;
+		Multillista tad = null;
 		while (tad==null) //mentre que el usuari no indiqui l'estructura iterarem
 		{
 			System.out.println("Quina versio vols utilitzar?");
@@ -118,15 +126,16 @@ public class Main {
 				switch(opt) {
 				case 1: 
 					// Creem llistes i dades necessaries per a construir la multillista
-					tad = new LlistaEstatica(10000);
+					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaEstatica<Assignatura>(10000)), ((TADLlistaGenerica<Alumne>)new LlistaEstatica<Alumne>(10000)));
 					break;
 				case 2: 
 					// Creem llistes i dades necessaries per a construir la multillista
-					tad = new LlistaDinamica(); 
+					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaDinamica<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaDinamica<Alumne>()));
+; 
 					break; 
 				case 3: 
 					// Creem llistes i dades necessaries per a construir la multillista
-					tad = new LlistaJavaUtil(10000);
+					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaJavaUtil<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaJavaUtil<Alumne>()));
 					break;
 				default: System.out.println("Aquesta opcio no esta a la llista... \n");
 				break;	//Funciona com una excepcio per a un valor numeric no acceptat
@@ -134,7 +143,7 @@ public class Main {
 			}
 			catch (InputMismatchException e) 
 			{
-				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una opció incorrecta, torna-ho a intentar \n");
+				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una opciï¿½ incorrecta, torna-ho a intentar \n");
                 teclat.nextLine(); 
 			}
 		}
@@ -146,12 +155,11 @@ public class Main {
 	 * @throws LlistaPlena 
 	 */
 	public static void main(String[] args) throws LlistaPlena {
-		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
 		while (true)
 		{
-			TADLlistaGenerica tad = menu(); //preguntem al usuari quina estructura vol i la inicialitzem
+			Multillista tad = menu(); //preguntem al usuari quina estructura vol i la inicialitzem
 			llegirFitxer(tad); //Passem el tad multillista per a que llegir fitxer llegeixi el fitxer i ho pleni de relacions
-			consultes();
+			consultes(tad);
 		}
 
 }}
