@@ -26,7 +26,7 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		//a la inversa, tenint les posicions buides amb menor index en les posicions de major index en buits[]
 		for (int i=buits.length-1; i>-1; i--)
 		{
-			this.buits[i] = i;
+			this.buits[i] = this.buits.length-i-1;
 		}
 		this.numElemsbuits=dim;
 	}

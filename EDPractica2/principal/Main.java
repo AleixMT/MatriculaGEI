@@ -116,7 +116,7 @@ public class Main {
 				System.out.println("Ha tardat "+ (tf-ti)+ " segons");
 				
 				System.out.println(tad.getA());
-				//System.out.println(tad.getAs());
+				System.out.println(tad.getAs());
 
 			}
 			catch (IOException e) //Problema general de IO

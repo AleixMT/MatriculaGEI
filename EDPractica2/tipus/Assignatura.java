@@ -93,7 +93,7 @@ public class Assignatura implements Comparable<Assignatura> {
 	}
 	
 	public boolean equals(Assignatura a){
-		return (this.codi==a.getCodi() && this.credits == a.getCredits() && this.curs == a.getCurs() && this.nom.equals(a.getNom()) && this.quadrimestre == a.getQuadrimestre());
+		return (this.codi.compareTo(a.getCodi()) == 0);
 	}
 	
 	
