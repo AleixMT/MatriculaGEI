@@ -41,7 +41,10 @@ public class Main {
 					tad.sumariAlumne(entry);
 					break;
 				case 2: 
-					// Creem llistes i dades necessaries per a construir la multillista
+					System.out.print("Introdueix el codi de l'assignatura: ");
+					int entryint = teclat.nextInt();
+					ti=System.nanoTime();
+					tad.sumariAssignatura(entryint);					
 					break; 
 				case 3: 
 					// Creem llistes i dades necessaries per a construir la multillista

@@ -74,7 +74,7 @@ public class Assignatura implements Comparable<Assignatura> {
 		return "\nAssignatura:\ncodi: " +codi + "\nnom: "+nom + "\ncredits: "+credits + "\ncurs: " + curs + "\nquadrimestre:" + quadrimestre + "\n";
 	}
 	
-	public int compareTo (Integer codi){
+	public int compareTo (int codi){
 		if (codi < this.codi) return -1;
 		if (codi > this.codi) return 1;
 		return 0;

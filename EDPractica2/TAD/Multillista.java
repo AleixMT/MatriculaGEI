@@ -90,6 +90,32 @@ public class Multillista implements TADMultillista{
 		return true;
 	}
 	
+	public boolean sumariAssignatura(int codi){
+		Iterator<Assignatura> aux = this.as.Iterator();	// Creem un iterador per a la llista d'assignatures
+		int nummatriculats = 0;	// Inicialitzem el comptador
+		boolean trobat = false;	// boolea de trobat
+		Obj<Assignatura> as = null;	// Inicialitzem una instancia de la classe alumne
+		while (aux.hasNext() && !trobat) // iterem mentre no trobem l'element i hi hagi un element disponible
+		{
+			as = aux.next();	// assignem l'alumne a un element auxiliar
+			if (as.getObj().compareTo(codi) == 0) trobat = true;	// si trobem que el compareTo retorna 0 (es el mateix) pugem la bandera
+		}
+		if (trobat == false) return false;	// Si el sortir del bucle ha sigut degut a acabar la llista vol dir que no existeix tal element, per tant retornem null i sortim
+		/*
+		 *  Iterarem sobre el nodes de matricula i els anem acumulant a una llista. 
+		 *  Hem implementat alguns constructors extra a la classe iterator per a poder utilitzar-ho per a poder
+		 *  reduir codi.
+		 */
+		Iterator<Matricula> matr = new Iterator<Matricula>(as, as.getObj());	// Creem un nou iterador parametritzat amb la classe assignatura
+		while (matr.hasNext())	// mentre tingui més matricules penjant d'alumne
+		{
+			Alumne alaux = matr.next().getObj().getAlumne(); // Iterem i les acumulem a la llista
+			nummatriculats++;
+			System.out.print(alaux);
+		}
+		System.out.println("\n"+nummatriculats + " matriculats en total.");
+		return true;
+	}
 	public Matricula esborrar(Matricula e) throws LlistaBuida {
 		return null;
 	}

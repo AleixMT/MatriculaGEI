@@ -56,19 +56,15 @@ public class Alumne implements Comparable<Alumne>{
 	 */
 	public int compareTo(Alumne o) {
 		int res = this.nom.compareTo(o.nom);
-		if (res < 0) return -1;
-		if (res > 0) return 1;
-		res = this.codi.compareTo(o.codi);
-		if (res < 0) return -1;
-		if (res > 0) return 1;
-		return 0;
+		if (res != 0) return res;
+		return this.codi.compareTo(o.codi);
 	}
 	
 	/**
 	 * M�tode per a comparar un alumne amb un altre mitjancant el codi d'alumne aportat per un string
 	 */
 	public int compareTo(String codi) {
-		return (this.codi.compareTo(codi));
+		return this.codi.compareTo(codi);
 	}
 	
 	/**
