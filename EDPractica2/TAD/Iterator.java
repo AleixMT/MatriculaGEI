@@ -8,16 +8,18 @@ public class Iterator<T extends Comparable<T>> {
 	private int numElem=0;	//nombre d'elements
 	
 	
+	@SuppressWarnings("unchecked")
 	public Iterator(LlistaEstatica<T> ll) {
 		int aux = ll.getPrimer();	// aux sera el nostre cursor temporal
-		this.posicioIterator=0;		// reaprofitem la variable de la posicio de l'iterador
+		int i = 0;
+		this.llista = (Obj<T>[]) new Obj[10000];
 		while (aux!=-1)	// mentre la referencia no sigui -1, iterarem sobre la llista
 		{
-			this.llista[this.posicioIterator] = ll.getLlista()[aux];	// assignem a la posicio actual de l'index l'objecte de la seguent posicio
-			this.posicioIterator++;		// Incrementem l'index
+			this.llista[i] = ll.getLlista()[aux];	// assignem a la posicio actual de l'index l'objecte de la seguent posicio
+			i++;		// Incrementem l'index
 			aux = ll.getLlista()[aux].getCursor();	// actualitzem el cursor
 		}
-		this.posicioIterator = 0;	// reiniciem l'iterador
+		this.posicioIterator = 0;	// iniciem l'iterador
 		this.numElem = ll.getNumElem();		// Actualitzem el nombre d'elements, que sera el mateix nombre d'elements que a la llista
 	}
 	

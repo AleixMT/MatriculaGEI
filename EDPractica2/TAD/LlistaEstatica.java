@@ -1,6 +1,8 @@
 package TAD;
 
 
+import java.util.Arrays;
+
 import tipus.Obj;
 import tipus.ObjCursor;
 import Exceptions.LlistaBuida;
@@ -89,6 +91,18 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		}
 		
 	}
+	@Override
+	public String toString() {
+		int aux = this.primer;
+		while (aux != -1){
+			
+		}
+		return "LlistaEstatica [llista=" + Arrays.toString(llista)
+				+ ", numElem=" + numElem + ", primer=" + primer + ", buits="
+				+ Arrays.toString(buits) + ", numElemsbuits=" + numElemsbuits
+				+ "]";
+	}
+
 	/**
 	 * Aquest es un metode que s'hauria d'implementar seguint la idea de la llista, però pell problema que s'ens planteja no
 	 * ecessitem necessariament aquest métode

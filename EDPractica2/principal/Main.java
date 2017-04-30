@@ -75,40 +75,54 @@ public class Main {
 		teclat.nextLine(); //flush
 		String aux = "";
 		String fitxer = null;
-		try{
-			System.out.println("Quin es el nom del fitxer de dades?");
-			fitxer = teclat.nextLine();
-		}catch (InputMismatchException e){
-			System.out.println("El nom del fitxer es incorrecte, torna-ho a intentar:");
-			fitxer = teclat.nextLine();
-		}
-		try
+		boolean correcte = false;
+		while (!correcte)
 		{
-			BufferedReader buffer = new BufferedReader(new FileReader(fitxer)); //Inicialitzem el buffer de fitxer
-			ti=System.nanoTime();
-			while((aux = buffer.readLine()) != null) 
+			while (!correcte)
 			{
-				String[] content = aux.split(";");
-				//codi assignatura;nom assignatura;credits;curs;quadrimestre;codi alumne;nom alumne
-				//crear instancia d'assignatura		
-				Assignatura ass = new Assignatura(Integer.parseInt(content[0]), content[1], Integer.parseInt(content[2]), Integer.parseInt(content[3]), Integer.parseInt(content[4]));
-				tad.getAs().afegir(ass);
-				//crear instancia d'alumne
-				Alumne a = new Alumne(content[5], content[6]);
-				tad.getA().afegir(a);
-				
-				//Anar afegint relacions a la multillista
-				tad.afegir(new Matricula(a, ass, null, null)) ;
-				//tad.afegir(ass, a);
-	           } 
-			buffer.close();
-			tf=System.nanoTime();
-			System.out.println("Ha tardat "+ (tf-ti)+ " segons");
+				try{
+					System.out.println("Quin es el nom del fitxer de dades?");
+					fitxer = teclat.nextLine();
+					correcte = true;
+				}catch (InputMismatchException e){
+					System.out.println("El nom del fitxer es incorrecte, torna-ho a intentar:");
+					fitxer = teclat.nextLine();
+				}
+			}
+			correcte = false;
+			try
+			{
+				BufferedReader buffer = new BufferedReader(new FileReader(fitxer)); //Inicialitzem el buffer de fitxer
+				ti=System.nanoTime();
+				while((aux = buffer.readLine()) != null) 
+				{
+					String[] content = aux.split(";");
+					//codi assignatura;nom assignatura;credits;curs;quadrimestre;codi alumne;nom alumne
+					//crear instancia d'assignatura		
+					Assignatura ass = new Assignatura(Integer.parseInt(content[0]), content[1], Integer.parseInt(content[2]), Integer.parseInt(content[3]), Integer.parseInt(content[4].substring(content[4].length()-2, content[4].length()-1)));
+					tad.getAs().afegir(ass);
+					//crear instancia d'alumne
+					Alumne a = new Alumne(content[5], content[6]);
+					tad.getA().afegir(a);
+					
+					//Anar afegint relacions a la multillista
+					tad.afegir(new Matricula(a, ass, null, null)) ;
+					//tad.afegir(ass, a);
+		           } 
+				buffer.close();
+				correcte = true;
+				tf=System.nanoTime();
+				System.out.println("Ha tardat "+ (tf-ti)+ " segons");
+				System.out.println(tad.getA());
+				System.out.println(tad.getAs());
+
+			}
+			catch (IOException e) //Problema general de IO
+			{
+				System.out.println("ERROR: No existeix aquest fitxer!");
+			}
 		}
-		catch (IOException e) //Problema general de IO
-		{
-			System.out.println("ERROR: Problema d'entrada/sortida");
-		}
+		
 	}
 	
 	public static Multillista menu(){ //mostra el menu i inicialitza el TAD
@@ -126,7 +140,7 @@ public class Main {
 				switch(opt) {
 				case 1: 
 					// Creem llistes i dades necessaries per a construir la multillista
-					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaEstatica<Assignatura>(10000)), ((TADLlistaGenerica<Alumne>)new LlistaEstatica<Alumne>(10000)));
+					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaEstatica<Assignatura>(100)), ((TADLlistaGenerica<Alumne>)new LlistaEstatica<Alumne>(200)));
 					break;
 				case 2: 
 					// Creem llistes i dades necessaries per a construir la multillista
