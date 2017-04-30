@@ -71,8 +71,7 @@ public class Assignatura implements Comparable<Assignatura> {
 
 
 	public String toString() {
-		return codi + nom + credits + " credits"+ ", curs " + curs + ", " + quadrimestre +" quadrimestre"
-				+ "]";
+		return "\nAssignatura:\ncodi: " +codi + "\nnom: "+nom + "\ncredits: "+credits + "\ncurs: " + curs + "\nquadrimestre:" + quadrimestre + "\n";
 	}
 	
 	public int compareTo (Integer codi){
@@ -82,11 +81,11 @@ public class Assignatura implements Comparable<Assignatura> {
 	}
 	
 	public int compareTo (Assignatura o){
-		if (o.curs<this.curs) return -1;
-		if (o.curs>this.curs) return 1;
-		if (o.quadrimestre<this.quadrimestre) return -1;
+		if (o.curs<this.curs) return 1;
+		if (o.curs>this.curs) return -1;
+		if (o.quadrimestre<this.quadrimestre) return 1;
 		if (o.quadrimestre>this.quadrimestre) return -1;
-		return (o.nom.compareTo(this.nom));
+		return (this.nom.compareTo(o.getNom()));
 	}
 	
 	public Assignatura clone(){

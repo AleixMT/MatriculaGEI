@@ -1,8 +1,5 @@
 package TAD;
 
-
-import java.util.Arrays;
-
 import tipus.Obj;
 import tipus.ObjCursor;
 import Exceptions.LlistaBuida;
@@ -95,12 +92,15 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	public String toString() {
 		int aux = this.primer;
 		while (aux != -1){
-			
+			System.out.print(this.llista[aux].getObj());
+			aux = this.llista[aux].getCursor();
 		}
-		return "LlistaEstatica [llista=" + Arrays.toString(llista)
-				+ ", numElem=" + numElem + ", primer=" + primer + ", buits="
-				+ Arrays.toString(buits) + ", numElemsbuits=" + numElemsbuits
-				+ "]";
+		String buits = "";
+		for (int i = 0; i < this.numElemsbuits; i++)
+		{
+			buits += this.buits[i] + " ";
+		}
+		return "Nombre d'elements: " + numElem + "\nPrimer: " + primer + "\nPosicions buides: \n" +buits+ "\nNombre d'elements buits: "+numElemsbuits;
 	}
 
 	/**

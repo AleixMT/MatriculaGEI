@@ -31,11 +31,13 @@ public class Main {
 			System.out.println("5.- Reinicia el programa");
 			try
 			{
-				opt=teclat.nextInt();
 				ti=System.nanoTime();
+				opt=teclat.nextInt();
 				switch(opt) {
 				case 1: 
+					System.out.print("Introdueix el codi de l'alumne: ");
 					String entry = teclat.next();
+					ti=System.nanoTime();
 					tad.sumariAlumne(entry);
 					break;
 				case 2: 
@@ -54,7 +56,7 @@ public class Main {
 				break;	//Funciona com una excepcio per a un valor numeric no acceptat
 				}
 				tf = System.nanoTime();
-				System.out.println("Ha tardat "+ (tf-ti)+ " segons");
+				System.out.println("Ha tardat "+ (tf-ti)/Math.pow(10, 9)+ " segons");
 			}
 			catch (InputMismatchException e) 
 			{
@@ -107,14 +109,14 @@ public class Main {
 					
 					//Anar afegint relacions a la multillista
 					tad.afegir(new Matricula(a, ass, null, null)) ;
-					//tad.afegir(ass, a);
 		           } 
 				buffer.close();
 				correcte = true;
 				tf=System.nanoTime();
 				System.out.println("Ha tardat "+ (tf-ti)+ " segons");
+				
 				System.out.println(tad.getA());
-				System.out.println(tad.getAs());
+				//System.out.println(tad.getAs());
 
 			}
 			catch (IOException e) //Problema general de IO

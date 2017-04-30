@@ -78,7 +78,7 @@ public class Alumne implements Comparable<Alumne>{
 	}
 	
 	public boolean equals(Alumne a){
-		return (this.nom == a.getNom() && this.codi == a.getCodi());
+		return (this.nom.equals(a.getNom()) && this.codi.equals(a.getCodi()));
 	}
 	 
 }

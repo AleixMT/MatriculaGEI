@@ -40,13 +40,19 @@ public class Multillista implements TADMultillista{
 		while (als.hasNext())	// Iterem sobre l'iterator de llista d'alumnes
 		{
 			auxal = als.next();	// Obtenim següent
-			if (auxal.equals(m.getAlumne())) break;	// comparem amb l'alumne de la matricula rebuda per parametre i sortim si es el mateix
+			if (auxal.getObj().equals(m.getAlumne())) break;	// comparem amb l'alumne de la matricula rebuda per parametre i sortim si es el mateix
 		}
 		while (ass.hasNext())
 		{
 			auxas = ass.next();
-			if (auxas.equals(m.getAssignatura())) break;
+			if (auxas.getObj().equals(m.getAssignatura())) break;
 		}
+		/**
+		Iterator<Matricula> iteramat = new Iterator<Matricula>( auxal, auxal.getObj());
+		while (iteramat.hasNext()){
+			if (iteramat.next().getObj().getAssignatura().equals(m.getAssignatura())) return false;
+		}
+		**/
 		// Després d'aquests passos hauríem de fer diverses comprovcions: Comprovar que la variable no fos null, que no s'hagués
 		// trobat Alumne i Assignatura de la Matrícula, etc. Però segons la especificació això no pot passar
 		Matricula mAl = auxal.getNode();	// Obte els nodes següents d'alumne
@@ -73,14 +79,14 @@ public class Multillista implements TADMultillista{
 		 *  Hem implementat alguns constructors extra a la classe iterator per a poder utilitzar-ho per a poder
 		 *  reduir codi.
 		 */
-		Iterator<Assignatura> matr = new Iterator<Assignatura>(al, al.getObj());	// Creem un nou iterador parametritzat amb la classe assignatura
+		Iterator<Matricula> matr = new Iterator<Matricula>(al, al.getObj());	// Creem un nou iterador parametritzat amb la classe assignatura
 		while (matr.hasNext())	// mentre tingui més matricules penjant d'alumne
 		{
-			Assignatura asaux = matr.next().getObj(); // Iterem i les acumulem a la llista
+			Assignatura asaux = matr.next().getObj().getAssignatura(); // Iterem i les acumulem a la llista
 			credits+=asaux.getCredits();
 			System.out.print(asaux);
 		}
-		System.out.println(credits + " en total.");
+		System.out.println("\n"+credits + " en total.");
 		return true;
 	}
 	

@@ -12,7 +12,7 @@ public class Iterator<T extends Comparable<T>> {
 	public Iterator(LlistaEstatica<T> ll) {
 		int aux = ll.getPrimer();	// aux sera el nostre cursor temporal
 		int i = 0;
-		this.llista = (Obj<T>[]) new Obj[10000];
+		this.llista = (Obj<T>[]) new Obj[ll.getLlista().length];
 		while (aux!=-1)	// mentre la referencia no sigui -1, iterarem sobre la llista
 		{
 			this.llista[i] = ll.getLlista()[aux];	// assignem a la posicio actual de l'index l'objecte de la seguent posicio
@@ -37,26 +37,28 @@ public class Iterator<T extends Comparable<T>> {
 	@SuppressWarnings("unchecked")
 	public Iterator(Obj<Alumne> a, Alumne identificatiudelconstructor)
 	{
-			Matricula aux = a.getNode();
-			while (aux!=null)
-			{
-				this.llista[this.numElem] = (Obj<T>)new Obj<Matricula>(aux);
-				aux = aux.getSeguentV();
-				this.numElem++;
-			}
-			this.posicioIterator=0;
-			
-			
+		Matricula aux = a.getNode();
+		this.numElem = 0;
+		this.llista = (Obj<T>[]) new Obj[1000];
+		while (aux!=null)
+		{
+			this.llista[this.numElem] = (Obj<T>)new Obj<Matricula>(aux);
+			aux = aux.getSeguentH();
+			this.numElem++;
+		}
+		this.posicioIterator=0;
 	}	
 	
 	@SuppressWarnings("unchecked")
 	public Iterator(Obj<Assignatura> a, Assignatura identificatiudelconstructor)
 	{ 
 		Matricula auxx = a.getNode();
+		this.numElem = 0;
+		this.llista = (Obj<T>[]) new Obj[200];
 		while (auxx!=null)
 		{
 			this.llista[this.numElem] = (Obj<T>)new Obj<Matricula>(auxx);
-			auxx = auxx.getSeguentH();
+			auxx = auxx.getSeguentV();
 			this.numElem++;
 		}
 		this.posicioIterator=0;
