@@ -88,5 +88,7 @@ public class Iterator<T extends Comparable<T>> {
 		this.posicioIterator=0;
 	}
 	
-
+	public int getNumElem(){
+		return this.numElem;
+	}
 }

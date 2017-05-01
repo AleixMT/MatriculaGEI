@@ -13,14 +13,12 @@ import tipus.Matricula;
 public class Main {
 
 	static Scanner teclat=new Scanner(System.in); //Scanner del main
-	/**
-	 * Metode per a interaccionar amb l'usuari sobre si vol encriptar o desencriptar
-	 * @return opcio escollida (1-encriptar, 2-desencriptar)
-	 */
 	public static void consultes(Multillista tad){ //mostra les consultes
 		int opt=0;
 		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
 		boolean exit = false;
+		String entry = "";
+		int entryint = 0;
 		while (!exit) //mentre que el usuari no indiqui l'estructura iterarem
 		{
 			System.out.println("Quina consulta vols fer?");
@@ -36,21 +34,35 @@ public class Main {
 				switch(opt) {
 				case 1: 
 					System.out.print("Introdueix el codi de l'alumne: ");
-					String entry = teclat.next();
+					entry = teclat.next();
 					ti=System.nanoTime();
-					tad.sumariAlumne(entry);
+					if 	(!tad.sumariAlumne(entry)){
+						System.out.print("Sembla que no s'ha trobat cap alumne amb aquest codi...");
+					}
 					break;
 				case 2: 
 					System.out.print("Introdueix el codi de l'assignatura: ");
-					int entryint = teclat.nextInt();
+					entryint = teclat.nextInt();
 					ti=System.nanoTime();
-					tad.sumariAssignatura(entryint);					
+					if (!tad.sumariAssignatura(entryint)){
+						System.out.print("No s'ha trobat cap assignatura amb aquest codi...");
+					}
 					break; 
 				case 3: 
-					// Creem llistes i dades necessaries per a construir la multillista
+					System.out.print("Introdueix el nombre de credits avaluats: ");
+					entryint = teclat.nextInt();
+					ti=System.nanoTime();
+					if (!tad.AlumnesNumCredits(entryint)){
+						System.out.print("No hi ha cap element coincident...");
+					}
 					break;
 				case 4: 
-					// Creem llistes i dades necessaries per a construir la multillista
+					System.out.print("Introdueix el nombre d'alumnes avaluats: ");
+					entryint = teclat.nextInt();
+					ti=System.nanoTime();
+					if (!tad.AssignaturesNumAlumnes(entryint)){
+						System.out.print("No hi ha cap element coincident...");
+					}					
 					break;
 				case 5: 
 					exit=true;
@@ -112,7 +124,7 @@ public class Main {
 					
 					//Anar afegint relacions a la multillista
 					tad.afegir(new Matricula(a, ass, null, null)) ;
-		           } 
+		        } 
 				buffer.close();
 				correcte = true;
 				tf=System.nanoTime();
@@ -144,17 +156,14 @@ public class Main {
 				opt=teclat.nextInt();
 				switch(opt) {
 				case 1: 
-					// Creem llistes i dades necessaries per a construir la multillista
-					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaEstatica<Assignatura>(100)), ((TADLlistaGenerica<Alumne>)new LlistaEstatica<Alumne>(200)));
+					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaEstatica<Assignatura>(100)), ((TADLlistaGenerica<Alumne>)new LlistaEstatica<Alumne>(200)));	// Creem la multillista amb llistes estàtiques
 					break;
 				case 2: 
-					// Creem llistes i dades necessaries per a construir la multillista
-					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaDinamica<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaDinamica<Alumne>()));
-; 
+					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaDinamica<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaDinamica<Alumne>()));	// Creem la multillista amb llistes dinàmiques
 					break; 
 				case 3: 
 					// Creem llistes i dades necessaries per a construir la multillista
-					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaJavaUtil<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaJavaUtil<Alumne>()));
+					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaJavaUtil<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaJavaUtil<Alumne>()));	// Creem la multillista amb llistes javautil
 					break;
 				default: System.out.println("Aquesta opcio no esta a la llista... \n");
 				break;	//Funciona com una excepcio per a un valor numeric no acceptat
@@ -178,7 +187,7 @@ public class Main {
 		{
 			Multillista tad = menu(); //preguntem al usuari quina estructura vol i la inicialitzem
 			llegirFitxer(tad); //Passem el tad multillista per a que llegir fitxer llegeixi el fitxer i ho pleni de relacions
-			consultes(tad);
+			consultes(tad);	// menú d'opcions
 		}
 
 }}
