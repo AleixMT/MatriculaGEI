@@ -26,9 +26,6 @@ public class Multillista implements TADMultillista{
 		this.as = as;
 	}
 	
-	/**
-	 * 
-	 */
 	public boolean afegir(Matricula m) throws LlistaPlena {
 		Iterator<Alumne> als = this.a.Iterator();	// Creem dos iteradors: un de la llista d'alumnes...
 		Iterator<Assignatura> ass = this.as.Iterator(); // ... i un de la llista d'assignatures

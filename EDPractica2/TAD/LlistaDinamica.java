@@ -27,8 +27,7 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 		{
 			ObjReferencia<T> aux = primer;
 			ObjReferencia<T> preaux = null;
-			boolean trobat = false;
-			while (aux!= null && !trobat)
+			while (aux!= null)
 			{
 				int res = aux.getObj().compareTo(a);	// Comparem l'element rebut per parametre amb el de la posicio actual
 				if (res == 0 )	// Si retorna 0 vol dir que es el mateix element
@@ -44,7 +43,14 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 					aux = aux.getRef();	// ara aux apunta a l'element seguent, obtingut amb la referencia 
 				}
 			}
-			preaux.setRef(new ObjReferencia<T>(a, aux)); // Creem el nou objecte i fem que aux sigui el seguent i preaux sigui el que precedeix
+			if (preaux != null)
+			{
+				preaux.setRef(new ObjReferencia<T>(a, aux)); // Creem el nou objecte i fem que aux sigui el seguent i preaux sigui el que precedeix
+			}
+			else
+			{
+				this.setPrimer(new ObjReferencia<T>(a, aux));
+			}
 		}
 		numElem++;	// Part constant, afegim un element
 		return true; //sempre s'afegira, mai sera plena
@@ -83,4 +89,18 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 	public ObjReferencia<T> getPrimer() { return primer;}
 	public int getNumElem() { return this.numElem;}
 	public void setPrimer(ObjReferencia<T> primer) {this.primer = primer;}
+
+	public String toString() {
+		ObjReferencia<T> aux = this.primer;
+		String retorn = "";
+		while (aux!= null)
+		{
+			retorn += aux.getObj().toString();
+			aux = aux.getRef();
+		}
+		retorn += "\nNombre d'elements: " +this.numElem + "\n";
+		return retorn;
+	}
+	
+	
 }

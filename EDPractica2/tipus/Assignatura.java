@@ -75,8 +75,8 @@ public class Assignatura implements Comparable<Assignatura> {
 	}
 	
 	public int compareTo (int codi){
-		if (codi < this.codi) return -1;
-		if (codi > this.codi) return 1;
+		if (this.codi < codi) return -1;
+		if (this.codi > codi) return 1;
 		return 0;
 	}
 	

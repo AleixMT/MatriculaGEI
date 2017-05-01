@@ -162,7 +162,6 @@ public class Main {
 					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaDinamica<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaDinamica<Alumne>()));	// Creem la multillista amb llistes dinàmiques
 					break; 
 				case 3: 
-					// Creem llistes i dades necessaries per a construir la multillista
 					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaJavaUtil<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaJavaUtil<Alumne>()));	// Creem la multillista amb llistes javautil
 					break;
 				default: System.out.println("Aquesta opcio no esta a la llista... \n");

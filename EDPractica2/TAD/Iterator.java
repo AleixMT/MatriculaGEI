@@ -23,12 +23,29 @@ public class Iterator<T extends Comparable<T>> {
 		this.numElem = ll.getNumElem();		// Actualitzem el nombre d'elements, que sera el mateix nombre d'elements que a la llista
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Iterator (LlistaDinamica<T> ll){
-		
+		this.numElem = 0;
+		this.posicioIterator = 0; 
+		this.llista = (Obj<T>[]) new Obj[ll.getNumElem()];
+		ObjReferencia<T> aux = ll.getPrimer();
+		while (aux != null){
+			this.llista[this.numElem] = (Obj<T>) aux;
+			aux = aux.getRef();
+			this.numElem++;
+		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Iterator (LlistaJavaUtil<T> ll){
-		
+		int i = 0;
+		this.llista = (Obj<T>[]) new Obj[ll.getLlista().size()];
+		while (i < ll.getNumElem()){
+			this.llista[i] = ll.getLlista().get(i);
+			i++;
+		}
+		this.numElem = ll.getLlista().size();
+		this.posicioIterator = 0;
 	}
 	/**
 	 * Els sseguent metodes no funcionen
@@ -73,7 +90,7 @@ public class Iterator<T extends Comparable<T>> {
 	
 	/**
 	 * Retornem el següent element T i incrementem la posicio de l'iterador
-	 * @return segent element T
+	 * @return seguent element T
 	 */
 	public Obj<T> next() {
 		Obj<T> aux = this.llista[posicioIterator];

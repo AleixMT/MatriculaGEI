@@ -66,8 +66,17 @@ public class LlistaJavaUtil<T extends Comparable<T>> implements TADLlistaGeneric
 	public Iterator<T> Iterator() {
 		return new Iterator<T>(this);
 	}
+	public ArrayList<Obj<T>> getLlista() {
+		return llista;
+	}
 	
-
-	
-	
+	public String toString(){
+		String retorn = "";
+		for (int i = 0; i < this.getNumElem(); i++)
+		{
+			retorn += this.llista.get(i).getObj().toString();
+		}
+		retorn += "\n" + this.llista.size() + " elements.";
+		return retorn;
+	}
 }
