@@ -8,10 +8,16 @@ import TAD.*;
 import tipus.Alumne;
 import tipus.Assignatura;
 import tipus.Matricula;
-
-
+/**
+ * Classe principal per a provar el funcionament del programa
+ * @author Cristina Izquierdo i Aleix Marine
+ *
+ */
 public class Main {
 
+	/**
+	 * Menu amb les diferents consultes disponibles al programa
+	 */
 	static Scanner teclat=new Scanner(System.in); //Scanner del main
 	public static void consultes(Multillista tad){ //mostra les consultes
 		int opt=0;
@@ -25,8 +31,9 @@ public class Main {
 			System.out.println("1.- Mostrar matricula d'un alumne a partir del seu codi");
 			System.out.println("2.- Mostrar estat de l'assignatura a partir del seu codi");
 			System.out.println("3.- Mostrar alumnes amb tants o menys nombre de credits especificats");
-			System.out.println("4.- Mostrar assignatures amb tants o més nombre d'alumnes especificats");
+			System.out.println("4.- Mostrar assignatures amb tants o mes nombre d'alumnes especificats");
 			System.out.println("5.- Reinicia el programa");
+			System.out.println("6.- Sortir del programa");
 			try
 			{
 				ti=System.nanoTime();
@@ -67,6 +74,9 @@ public class Main {
 				case 5: 
 					exit=true;
 					break;
+				case 6: //apagar la consola
+					for (int i = 0; i < 100; ++i) System.out.println();//netejem la pantalla omplint-la d'espais
+					System.exit(0); break; //termina l'aplicacio que s'esta executant al moment
 				default: System.out.println("Aquesta opcio no esta a la llista... \n");
 				break;	//Funciona com una excepcio per a un valor numeric no acceptat
 				}
@@ -75,7 +85,7 @@ public class Main {
 			}
 			catch (InputMismatchException e) 
 			{
-				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una opci� incorrecta, torna-ho a intentar \n");
+				System.out.println("Exceptions.InputMismatchException: ERROR:Has introduit una opcio incorrecta, torna-ho a intentar \n");
                 teclat.nextLine(); 
 			}
 		}
@@ -83,8 +93,8 @@ public class Main {
 
 	/**
 	 * Metode per a llegir el fitxer i afegir el contingut a les EDs
-	 * @param <E>
-	 * @param file -- fitxer a llegir
+	 * @param <E> tipus generic
+	 * @param file - fitxer a llegir
 	 * @throws LlistaPlena 
 	 */
 	public static void llegirFitxer(Multillista tad) throws LlistaPlena{
@@ -93,7 +103,7 @@ public class Main {
 		String aux = "";
 		String fitxer = null;
 		boolean correcte = false;
-		while (!correcte)
+		while (!correcte)//mentre que quedin dades per llegir
 		{
 			while (!correcte)
 			{
@@ -121,14 +131,13 @@ public class Main {
 					//crear instancia d'alumne
 					Alumne a = new Alumne(content[5], content[6]);
 					tad.getA().afegir(a);
-					
 					//Anar afegint relacions a la multillista
 					tad.afegir(new Matricula(a, ass, null, null)) ;
 		        } 
 				buffer.close();
-				correcte = true;
+				correcte = true; //ja s'han acabat d'afegir les dades
 				tf=System.nanoTime();
-				System.out.println("Ha tardat "+ (tf-ti)+ " segons");
+				System.out.println("Ha trigat "+ (tf-ti)+ " segons.");
 				
 				System.out.println(tad.getA());
 				System.out.println(tad.getAs());
@@ -142,10 +151,14 @@ public class Main {
 		
 	}
 	
+	/**
+	 * Menu per a crear les multillistes amb les diferents implementacions
+	 * @return tad
+	 */
 	public static Multillista menu(){ //mostra el menu i inicialitza el TAD
 		int opt=0;
 		Multillista tad = null;
-		while (tad==null) //mentre que el usuari no indiqui l'estructura iterarem
+		while (tad==null) //iterarem mentre que el usuari no indiqui l'estructura
 		{
 			System.out.println("Quina versio vols utilitzar?");
 			System.out.println("1.- Multillista amb llistes estatiques");
@@ -156,10 +169,10 @@ public class Main {
 				opt=teclat.nextInt();
 				switch(opt) {
 				case 1: 
-					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaEstatica<Assignatura>(100)), ((TADLlistaGenerica<Alumne>)new LlistaEstatica<Alumne>(200)));	// Creem la multillista amb llistes estàtiques
+					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaEstatica<Assignatura>(100)), ((TADLlistaGenerica<Alumne>)new LlistaEstatica<Alumne>(200)));	// Creem la multillista amb llistes estatiques
 					break;
 				case 2: 
-					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaDinamica<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaDinamica<Alumne>()));	// Creem la multillista amb llistes dinàmiques
+					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaDinamica<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaDinamica<Alumne>()));	// Creem la multillista amb llistes dinamiques
 					break; 
 				case 3: 
 					tad = new Multillista (((TADLlistaGenerica<Assignatura>) new LlistaJavaUtil<Assignatura>()), ((TADLlistaGenerica<Alumne>)new LlistaJavaUtil<Alumne>()));	// Creem la multillista amb llistes javautil
@@ -181,12 +194,12 @@ public class Main {
 	 * @param args arguments d'entrada
 	 * @throws LlistaPlena 
 	 */
-	public static void main(String[] args) throws LlistaPlena {
-		while (true)
+	public static void main(String[] args) throws LlistaPlena{
+		while (true) //bucle infinit del menu
 		{
 			Multillista tad = menu(); //preguntem al usuari quina estructura vol i la inicialitzem
 			llegirFitxer(tad); //Passem el tad multillista per a que llegir fitxer llegeixi el fitxer i ho pleni de relacions
-			consultes(tad);	// menú d'opcions
+			consultes(tad);	// menu d'opcions
 		}
 
 }}

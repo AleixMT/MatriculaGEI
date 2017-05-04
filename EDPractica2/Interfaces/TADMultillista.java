@@ -4,14 +4,14 @@ import tipus.Matricula;
 import Exceptions.*;
 
 /**
- * Interf�cie del TAD Multillista
- * @author Cristina Izquierdo i Aleix Marin�
+ * Interficie del TAD Multillista
+ * @author Cristina Izquierdo i Aleix Marine
  *
  */
 public abstract interface TADMultillista {
 
 	/**
-	 * Afegeix una relaci�
+	 * Afegeix una relacio
 	 * @param e - element a afegir
 	 * @throws LlistaPlena
 	 */

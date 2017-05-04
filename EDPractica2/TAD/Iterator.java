@@ -1,13 +1,21 @@
 package TAD;
 
 import tipus.*;
-
+/**
+ * Classe iterator. Accedeix secuencialment als elements d'una coleccio
+ * @author Aleix Marine i Cristina Izquierdo
+ *
+ * @param <T> tipus generic
+ */
 public class Iterator<T extends Comparable<T>> {
 	private Obj<T>[] llista;	//nou atribut per guardar objectes
 	private int posicioIterator; //Posicio de l'iterador
 	private int numElem=0;	//nombre d'elements
 	
-	
+	/**
+	 * metode constructor per la llista estatica
+	 * @param ll - llista
+	 */
 	@SuppressWarnings("unchecked")
 	public Iterator(LlistaEstatica<T> ll) {
 		int aux = ll.getPrimer();	// aux sera el nostre cursor temporal
@@ -23,6 +31,10 @@ public class Iterator<T extends Comparable<T>> {
 		this.numElem = ll.getNumElem();		// Actualitzem el nombre d'elements, que sera el mateix nombre d'elements que a la llista
 	}
 	
+	/**
+	 * metode constructor per la llista dinamica
+	 * @param ll - llista
+	 */
 	@SuppressWarnings("unchecked")
 	public Iterator (LlistaDinamica<T> ll){
 		this.numElem = 0;
@@ -36,6 +48,10 @@ public class Iterator<T extends Comparable<T>> {
 		}
 	}
 	
+	/**
+	 * metode constructor per la llista de java util
+	 * @param ll - llista
+	 */
 	@SuppressWarnings("unchecked")
 	public Iterator (LlistaJavaUtil<T> ll){
 		int i = 0;
@@ -47,10 +63,12 @@ public class Iterator<T extends Comparable<T>> {
 		this.numElem = ll.getLlista().size();
 		this.posicioIterator = 0;
 	}
+	
 	/**
-	 * Els sseguent metodes no funcionen
-	 * @param a
-	 **/
+	 * metode constructor tipus alumne
+	 * @param a - alumne
+	 * @param identificatiudelconstructor
+	 */
 	@SuppressWarnings("unchecked")
 	public Iterator(Obj<Alumne> a, Alumne identificatiudelconstructor)
 	{
@@ -66,6 +84,11 @@ public class Iterator<T extends Comparable<T>> {
 		this.posicioIterator=0;
 	}	
 	
+	/**
+	 * metode constructor tipus assignatura
+	 * @param a - assignatura
+	 * @param identificatiudelconstructor
+	 */
 	@SuppressWarnings("unchecked")
 	public Iterator(Obj<Assignatura> a, Assignatura identificatiudelconstructor)
 	{ 
@@ -81,7 +104,7 @@ public class Iterator<T extends Comparable<T>> {
 		this.posicioIterator=0;
 	}
 	/**
-	 * retorna cert si encara no hem arribat a l'últim element, és a dir, si hi ha "next"
+	 * retorna cert si encara no hem arribat a l'ultim element, es a dir, si hi ha "next"
 	 * @return true si hi ha un altre element, false si no.
 	 */
 	public boolean hasNext() {
@@ -89,7 +112,7 @@ public class Iterator<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Retornem el següent element T i incrementem la posicio de l'iterador
+	 * Retornem el seguent element T i incrementem la posicio de l'iterador
 	 * @return seguent element T
 	 */
 	public Obj<T> next() {
@@ -99,12 +122,16 @@ public class Iterator<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * métode extra que serveix per a reiniciar la posicio de l'index en l'iterador 
+	 * metode extra que serveix per a reiniciar la posicio de l'index en l'iterador 
 	 */
 	public void reset(){
 		this.posicioIterator=0;
 	}
 	
+	/**
+	 * metode per a obtenir el numero d'elements
+	 * @return numero d'elements
+	 */
 	public int getNumElem(){
 		return this.numElem;
 	}

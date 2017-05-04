@@ -5,8 +5,8 @@ import TAD.Iterator;
 import Exceptions.*;
 
 /**
- * Interface per a definir una llista gen�rica.
- * @author Cristina Izquierdo i Aleix Marin�
+ * Interface per a definir una llista generica.
+ * @author Cristina Izquierdo i Aleix Marine
  *
  */
 public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
@@ -35,8 +35,8 @@ public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
 	public Obj<T> consultar(T c);
 	
 	/**
-	 * Getter del n�mero d'elements
-	 * @return n�mero d'elements a la llista
+	 * Getter del numero d'elements
+	 * @return numero d'elements a la llista
 	 * @throws LlistaBuida
 	 */
 	public int getNumElem();
@@ -48,14 +48,14 @@ public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
 	public Iterator<T> Iterator();
 	
 	/**
-	 * m�tode toString
+	 * metode toString
 	 * @return String amb els elements de la llista
 	 */	
 	public String toString();
 	
 	/**
-	 * M�tode per comparar objectes
+	 * Metode per comparar objectes
 	 * @param c - objecte a comparar
-	 * @return -1 si �s m�s petit, 0 si �s igual o 1 si �s m�s gran
+	 * @return -1 si es mes petit, 0 si es igual o 1 si es mes gran
 	 */
 }

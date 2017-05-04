@@ -1,13 +1,28 @@
 package tipus;
 
+/**
+ * Classe filla d'obj per a una llista dinamica (utilitza referencies)
+ * @author Aleix Marine i Cristina Izquierdo
+ *
+ * @param <T> tipus generic (Alumne/Assignatura)
+ */
 public class ObjReferencia <T extends Comparable<T>> extends Obj<T>{
 	private ObjReferencia<T> ref;
 	
+	/**
+	 * Metode constructor
+	 * @param obj - objecte
+	 * @param ref - referencia
+	 */
 	public ObjReferencia(T obj, ObjReferencia<T> ref){
 		super(obj);
 		this.ref = ref;
 	}
 
+	/**
+	 * Getter i setter de la referencia
+	 * @return referencia
+	 */
 	public ObjReferencia<T> getRef() {
 		return ref;
 	}

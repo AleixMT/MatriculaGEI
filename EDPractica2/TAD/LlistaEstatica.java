@@ -5,7 +5,12 @@ import tipus.ObjCursor;
 import Exceptions.LlistaBuida;
 import Exceptions.LlistaPlena;
 import Interfaces.*;
-
+/**
+ * Classe per a crear les llistes estatiques
+ * @author Aleix Marine i Cristina Izquierdo
+ *
+ * @param <T> tipus generic
+ */
 public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGenerica<T> {
 	private ObjCursor<T>[] llista;
 	private int numElem;
@@ -14,6 +19,10 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	private int[] buits;
 	private int numElemsbuits;
 	
+	/**
+	 * metode constructor
+	 * @param dim - dimensio de la llista
+	 */
 	@SuppressWarnings("unchecked")
 	public LlistaEstatica(int dim) {
 		this.llista = (ObjCursor<T>[]) new ObjCursor[dim];
@@ -41,7 +50,7 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 			{
 				posicio = this.desapilarBuits();	// Treiem un enter de la llista de buits
 				this.primer = posicio;				//Fem que el primer apunti a aquesta posicio (ja que sera la primera)
-				this.llista[posicio] = new ObjCursor<T>(a, -1);		// En aquesta posicio creem un nou objecte ObjCursor, passantli l'objecte
+				this.llista[posicio] = new ObjCursor<T>(a, -1);		// En aquesta posicio creem un nou objecte ObjCursor, passant-li l'objecte
 				// rebut per parametre i com a referencia posarem -1, ja que sera l'ultim element
 				this.numElem++; // modifiquem el nombre d'elements en consecuencia
 				return true; // Com hem afegit, sortim
@@ -63,10 +72,10 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 					}
 				}
 			}
-			/**
-			 *  Ja hem trobat l'element. Hem de conectar les referencies de tal manera que: preaux -> a -> aux
-			 * 	També pot passar que sigui la primera iteració i per tant calgui actualitzar el primer element. 
-			 * 	Per tant actualitzarem segons: primer -> a -> aux (l'antic primer)
+			/*
+			 Ja hem trobat l'element. Hem de conectar les referencies de tal manera que: preaux -> a -> aux
+			 Tambe pot passar que sigui la primera iteracio i per tant calgui actualitzar el primer element. 
+			 Per tant actualitzarem segons: primer -> a -> aux (l'antic primer)
 			 */
 			posicio = this.desapilarBuits();	// Obtenim la nova posicio on posarem el nou element
 			if (preaux == -1)	// Si preaux == -1, vol dir que es la primera iteracio , per tant cal actualitzar el primer.
@@ -78,7 +87,7 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 				this.llista[preaux].setCursor(posicio);	// Assignem el cursor, que apuntara a la nova posicio
 			}
 			this.llista[posicio] = new ObjCursor<T>(a, aux);	// En la nova posicio buida creem un nou objecte. La referencia sera 
-			//a aux llavors el cicle esta tancat. aux pot ser el seguent element o bé pot ser -1, si s'ha arribat al final de la taula
+			//a aux llavors el cicle esta tancat. aux pot ser el seguent element o be pot ser -1, si s'ha arribat al final de la taula
 			this.numElem++;	// incrementem el nombre d'elements
 			return true;	// Sortim
 		}
@@ -88,6 +97,10 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		}
 		
 	}
+	
+	/**
+	 * metode toString de la classe
+	 */
 	@Override
 	public String toString() {
 		int aux = this.primer;
@@ -103,18 +116,16 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		return "Nombre d'elements: " + numElem + "\nPrimer: " + primer + "\nPosicions buides: \n" +buits+ "\nNombre d'elements buits: "+numElemsbuits;
 	}
 
-	/**
-	 * Aquest es un metode que s'hauria d'implementar seguint la idea de la llista, però pell problema que s'ens planteja no
-	 * ecessitem necessariament aquest métode
-	 */
+	/*Aquest es un metode que s'hauria d'implementar seguint la idea de la llista, pero pel problema que s'ens planteja no
+	 necessitem aquest metode */
 	public T esborrar(T e) throws LlistaBuida {
 
 		return null;
 	}
 
 	/**
-	 * Serveix per a obtenir una nova posició lliure de la taula per a emmagatzemar un nou element.
-	 * També decrementa el nombre d'elements en la pila de buits 
+	 * Serveix per a obtenir una nova posicio lliure de la taula per a emmagatzemar un nou element.
+	 * Tambe decrementa el nombre d'elements en la pila de buits 
 	 * @return retorna un int, que es la posicio on pot ser inserit l'element
 	 */
 	public int desapilarBuits(){
@@ -123,8 +134,8 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	}
 	
 	/**
-	 * Serveix per a guardar una posició lliure de la taula per a emmagatzemar un nou element.
-	 * També augmenta el nombre d'elements disponibles en la pila de buits 
+	 * Serveix per a guardar una posicio lliure de la taula per a emmagatzemar un nou element.
+	 * Tambe augmenta el nombre d'elements disponibles en la pila de buits 
 	 */
 	public void apilarBuits(int n){
 		this.buits[this.numElemsbuits]=n;
@@ -133,7 +144,7 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	
 	/**
 	 * Serveix per a comprovar que la taula de buits estigui plena.
-	 * Si ho está retornem un boolea que ho indica
+	 * Si ho esta retornem un boolea que ho indica
 	 * @return true si esta plena, false si esta buida
 	 */
 	public boolean buitsEsPlena()
@@ -151,8 +162,8 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	}
 	
 	/**
-	 * comprova que la taula principal d'elements genérics estigui plena
-	 * @return true si esta plena, sinó false
+	 * comprova que la taula principal d'elements generics estigui plena
+	 * @return true si esta plena, sino false
 	 */
 	public boolean esPlena()
 	{
@@ -160,8 +171,8 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	}
 	
 	/**
-	 * comprova que la taula principal d'elements genérics estigui buida
-	 * @return true si esta buida, sinó false
+	 * comprova que la taula principal d'elements generics estigui buida
+	 * @return true si esta buida, sino false
 	 */
 	public boolean esBuida()
 	{
@@ -198,8 +209,8 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 		return this.numElem;
 	}
 	
-	/*
-	 * Getters dels diferents antributs de la classe
+	/**
+	 * Getters i setters dels diferents antributs de la classe
 	 */
 	public ObjCursor<T>[] getLlista() {
 		return llista;

@@ -2,8 +2,8 @@ package tipus;
 
 
 /**
- * Classe node relaci�
- * @author Cristina Izquierdo i Aleix Marin�
+ * Classe node relacio
+ * @author Cristina Izquierdo i Aleix Marine
  *
  */
 public class Matricula implements Comparable<Matricula>{
@@ -13,6 +13,13 @@ public class Matricula implements Comparable<Matricula>{
 	private Matricula seguentH;
 	private Matricula seguentV;
 	
+	/**
+	 * Metode constructor
+	 * @param a - alumne
+	 * @param as - assignatura
+	 * @param seguentH - seguent horitzontal
+	 * @param seguentV - seguent vertical
+	 */
 	public Matricula(Alumne a, Assignatura as, Matricula seguentH, Matricula seguentV) {
 		this.alumne = a;
 		this.assignatura = as;
@@ -20,6 +27,9 @@ public class Matricula implements Comparable<Matricula>{
 		this.seguentV=seguentV;
 	}
 
+	/**
+	 * Getters i Setters dels atributs de la classe
+	 */
 	public Alumne getAlumne() {
 		return alumne;
 	}
@@ -68,19 +78,34 @@ public class Matricula implements Comparable<Matricula>{
 		this.seguentV = seguentV;
 	}
 
-	@Override
+	/**
+	 * Metode toString
+	 */
 	public String toString() {
-		return "Node [a=" + alumne + ", as=" + assignatura +"]";
+		return "\n\tNode:\nAlumne: " + alumne + "\nAssignatura: " + assignatura;
 	}
 
+	/**
+	 * Metode per a clonar la matricula
+	 */
 	public Matricula clone(){
 		return this;
 	}
 	
+	/**
+	 * Metode equals. Compara l'alumne i l'assignatura associats a la matricula
+	 * @param e - matricula
+	 * @return False - son diferents. True - son iguals
+	 */
 	public boolean equals(Matricula e){
 		return (this.alumne.equals(e.getAlumne()) && this.assignatura.equals(e.getAssignatura()));
 	}
 	
+	/**
+	 * Metode compareTo. Compara l'alumne i l'assignatura associats a la matricula
+	 * @param e - matricula
+	 * @return -1 si es troba abans, 1 si es troba despres i 0 si es igual.
+	 */
 	public int compareTo(Matricula e){
 		if (this.alumne.compareTo(e.getAlumne()) < 0) return -1;
 		if (this.alumne.compareTo(e.getAlumne()) > 0) return 1;

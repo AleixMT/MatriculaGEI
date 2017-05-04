@@ -6,7 +6,7 @@ import Interfaces.*;
  * Classe per a crear les llistes dinamiques
  * @author Cristina Izquierdo i Aleix Marine
  *
- * @param <T>
+ * @param <T> tipus generic
  */
 public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGenerica<T> {
 	private ObjReferencia<T> primer;
@@ -57,14 +57,14 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 	}
 	
 	/**
-	 * Métode d'esborrat. No el farem servir així que no és necessari
+	 * Metode d'esborrat. No el farem servir aixi que no es necessari
 	 */
 	public T esborrar(T e) throws Exceptions.LlistaBuida {
 		return null;
 	}
 
 	/**
-	 * Busca un objecte T a la llista igual que el passat per parámetre i retorna l'objecte Obj wrapper de la llista 
+	 * Busca un objecte T a la llista igual que el passat per parametre i retorna l'objecte Obj wrapper de la llista 
 	 */
 	public Obj<T> consultar(T c) {
 		ObjReferencia<T> aux = primer;
@@ -76,7 +76,7 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 	}
 	
 	/**
-	 * Métode iterator. Retorna un objecte iterable d'aquesta classe
+	 * Metode iterator. Retorna un objecte iterable d'aquesta classe
 	 */
 	public Iterator<T> Iterator()
 	{
@@ -90,6 +90,9 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 	public int getNumElem() { return this.numElem;}
 	public void setPrimer(ObjReferencia<T> primer) {this.primer = primer;}
 
+	/**
+	 * metode toString de la classe
+	 */
 	public String toString() {
 		ObjReferencia<T> aux = this.primer;
 		String retorn = "";

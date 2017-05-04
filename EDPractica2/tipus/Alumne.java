@@ -9,7 +9,7 @@ public class Alumne implements Comparable<Alumne>{
 	private String codi;
 	private String nom;
 	/**
-	 * M�tode constructor per la classe alumne
+	 * Metode constructor per la classe alumne
 	 * @param codi: codi de l'alumne
 	 * @param nom: nom de l'alumne
 	 */
@@ -52,7 +52,7 @@ public class Alumne implements Comparable<Alumne>{
 	}
 
 	/**
-	 * M�tode per a comparar un alumne amb un altre mitjan�ant el seu nom a partir de una instancia d'alumne 
+	 * Metode per a comparar un alumne amb un altre a partir el seu nom a partir de una instancia d'alumne 
 	 */
 	public int compareTo(Alumne o) {
 		int res = this.nom.compareTo(o.nom);
@@ -61,18 +61,18 @@ public class Alumne implements Comparable<Alumne>{
 	}
 	
 	/**
-	 * M�tode per a comparar un alumne amb un altre mitjancant el codi d'alumne aportat per un string
+	 * Metode per a comparar un alumne amb un altre a partir el codi d'alumne aportat per un string
 	 */
 	public int compareTo(String codi) {
 		return this.codi.compareTo(codi);
 	}
 	
 	/**
-	 * M�tode toString de la classe Alumne
+	 * Metode toString de la classe Alumne
 	 */
 	@Override
 	public String toString() {
-		return "Alumne:\ncodi: " + codi + "\nnom: " + nom + "\n\n";
+		return "\n\tAlumne:\ncodi: " + codi + "\nnom: " + nom + "\n\n";
 	}
 	
 	public Alumne clone(){
