@@ -2,7 +2,7 @@ package TAD;
 
 import tipus.*;
 /**
- * Classe iterator. Accedeix secuencialment als elements d'una coleccio
+ * Classe iterator. Accedeix sequencialment als elements d'una coleccio
  * @author Aleix Marine i Cristina Izquierdo
  *
  * @param <T> tipus generic

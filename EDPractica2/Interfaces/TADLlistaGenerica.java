@@ -52,10 +52,4 @@ public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
 	 * @return String amb els elements de la llista
 	 */	
 	public String toString();
-	
-	/**
-	 * Metode per comparar objectes
-	 * @param c - objecte a comparar
-	 * @return -1 si es mes petit, 0 si es igual o 1 si es mes gran
-	 */
 }
