@@ -198,7 +198,8 @@ public class Multillista implements TADMultillista{
 	public Matricula esborrar(Matricula e) throws LlistaBuida {
 		return null;
 	}
-
+	
+	// Tampoc necessitem aquest mètode, a més, les opcions de consultar ja donen aquesta informació, més la d'altres assignatures
 	public Matricula consultar(Matricula c) throws LlistaBuida {
 		return null;
 	}

@@ -59,7 +59,22 @@ public class LlistaJavaUtil<T extends Comparable<T>> implements TADLlistaGeneric
 	 * metode consultar
 	 */
 	public Obj<T> consultar(T c) {
-		return null;
+		if (llista.size() == 0){	//Si la llista esta buida
+			return null;	// i retornem true
+		}
+		else	//Si la llista ja te algun element
+		{
+			for (int i = 0; i< this.llista.size(); i++)	// iterem sobre la llista fins a numElems-1
+			{
+				int res = ((Obj<T>)this.llista.get(i)).getObj().compareTo(c);	// Comparem l'objecte actual al rebut per parametre i emmagatzemem resultat
+				if (res == 0) return ((Obj<T>)this.llista.get(i));	// Si l'objecte es igual a un que ja hi ha a la llista sortim i n l'afegim, retornant false
+				if (res > 0)	// Si l'objecte es major vol dir que aquest va just despres i ens hempassat, per tant no hi és
+				{
+					return null;
+				}
+			}
+		}
+		return null; //Això vol dir que l'últim element va abans que l'objecte que busquem, però no hi és
 	}
 
 	/**
@@ -73,7 +88,7 @@ public class LlistaJavaUtil<T extends Comparable<T>> implements TADLlistaGeneric
 	 * metode iterator del java.util
 	 */
 	public Iterator<T> Iterator() {
-		return new Iterator<T>(this);
+		return this.Iterator();
 	}
 	
 	/**
