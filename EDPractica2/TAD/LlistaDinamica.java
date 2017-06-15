@@ -17,7 +17,10 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 		numElem = 0;
 	}
 
-	
+	/**
+	 * Metode per a afegir un element a la llista dinamica
+	 * @param a - element a afegir
+	 */
 	public boolean afegir(T a) {
 		if (this.primer==null) 	//si el primer encara no s'ha inicilitzat vol dir que estem al principi, llavors sera igual al ultim
 		{
@@ -58,6 +61,8 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 	
 	/**
 	 * Metode d'esborrat. No el farem servir aixi que no es necessari
+	 * @param e - element a esborrar
+	 * @return null - no el fem servir
 	 */
 	public T esborrar(T e) throws Exceptions.LlistaBuida {
 		return null;
@@ -65,6 +70,8 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 
 	/**
 	 * Busca un objecte T a la llista igual que el passat per parametre i retorna l'objecte Obj wrapper de la llista 
+	 * @param c - element a consultar
+	 * @return objecte a consultar o null si no el troba
 	 */
 	public Obj<T> consultar(T c) {
 		ObjReferencia<T> aux = primer;
@@ -85,6 +92,8 @@ public class LlistaDinamica<T extends Comparable<T>> implements TADLlistaGeneric
 
 	/** 
 	 * getters i setters
+	 * @return primer
+	 * @return numero d'elements
 	 */
 	public ObjReferencia<T> getPrimer() { return primer;}
 	public int getNumElem() { return this.numElem;}

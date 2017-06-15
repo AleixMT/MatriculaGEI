@@ -62,6 +62,8 @@ public class Alumne implements Comparable<Alumne>{
 	
 	/**
 	 * Metode per a comparar un alumne amb un altre a partir el codi d'alumne aportat per un string
+	 * @param codi per a comparar
+	 * @return negatiu si l'objecte va abans que l'argument, positiu si es al reves i 0 si son iguals
 	 */
 	public int compareTo(String codi) {
 		return this.codi.compareTo(codi);

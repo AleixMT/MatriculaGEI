@@ -136,6 +136,7 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	/**
 	 * Serveix per a guardar una posicio lliure de la taula per a emmagatzemar un nou element.
 	 * Tambe augmenta el nombre d'elements disponibles en la pila de buits 
+	 * @param n - numero d'elements buits
 	 */
 	public void apilarBuits(int n){
 		this.buits[this.numElemsbuits]=n;
@@ -204,46 +205,80 @@ public class LlistaEstatica<T extends Comparable<T>> implements TADLlistaGeneric
 	
 	/**
 	 * Getter del nombre d'elements a la llista
+	 * @return numero d'elements a la llista
 	 */
 	public int getNumElem(){
 		return this.numElem;
 	}
 	
 	/**
-	 * Getters i setters dels diferents antributs de la classe
+	 * Getter de la llista
+	 * @return llista
 	 */
 	public ObjCursor<T>[] getLlista() {
 		return llista;
 	}
 
+	/**
+	 * setter de la llista
+	 * @param llista - llista
+	 */
 	public void setLlista(ObjCursor<T>[] llista) {
 		this.llista = llista;
 	}
 
+	/**
+	 * Getter del primer element
+	 * @return primer element
+	 */
 	public int getPrimer() {
 		return primer;
 	}
 
+	/**
+	 * Setter del primer element
+	 * @param primer - primer element
+	 */
 	public void setPrimer(int primer) {
 		this.primer = primer;
 	}
 
+	/**
+	 * Getter dels espais buits
+	 * @return espais buits
+	 */
 	public int[] getBuits() {
 		return buits;
 	}
 
+	/**
+	 * Setter dels espais buits
+	 * @param buits - espais buits
+	 */
 	public void setBuits(int[] buits) {
 		this.buits = buits;
 	}
 
+	/**
+	 * Getter del numero d'espais buits
+	 * @return numero d'espais buits
+	 */
 	public int getNumElemsbuits() {
 		return numElemsbuits;
 	}
 
+	/**
+	 * Setter del numero d'espais buits
+	 * @param numElemsbuits - numero d'espais buits
+	 */
 	public void setNumElemsbuits(int numElemsbuits) {
 		this.numElemsbuits = numElemsbuits;
 	}
 
+	/**
+	 * Setter del numero d'elements
+	 * @param numElem - numero elements
+	 */
 	public void setNumElem(int numElem) {
 		this.numElem = numElem;
 	}

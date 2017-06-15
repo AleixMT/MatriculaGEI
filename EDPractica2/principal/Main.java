@@ -93,9 +93,8 @@ public class Main {
 
 	/**
 	 * Metode per a llegir el fitxer i afegir el contingut a les EDs
-	 * @param <E> tipus generic
-	 * @param file - fitxer a llegir
-	 * @throws LlistaPlena 
+	 * @param tad - estructura
+	 * @throws LlistaPlena - llista plena
 	 */
 	public static void llegirFitxer(Multillista tad) throws LlistaPlena{
 		long ti, tf; // temps per a mesurar l'eficiencia de l'algorisme
@@ -192,7 +191,7 @@ public class Main {
 	/**
 	 * Funcio principal del programa
 	 * @param args arguments d'entrada
-	 * @throws LlistaPlena 
+	 * @throws LlistaPlena - llista plena
 	 */
 	public static void main(String[] args) throws LlistaPlena{
 		while (true) //bucle infinit del menu

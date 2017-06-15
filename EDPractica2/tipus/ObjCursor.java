@@ -12,7 +12,7 @@ public class ObjCursor <T extends Comparable<T>> extends Obj<T>{
 	/**
 	 * Metode constructor
 	 * @param obj - objecte
-	 * @param cursor
+	 * @param cursor - cursor
 	 */
 	public ObjCursor (T obj, int cursor){
 		super(obj);

@@ -67,7 +67,7 @@ public class Iterator<T extends Comparable<T>> {
 	/**
 	 * metode constructor tipus alumne
 	 * @param a - alumne
-	 * @param identificatiudelconstructor
+	 * @param identificatiudelconstructor - identificador del constructor
 	 */
 	@SuppressWarnings("unchecked")
 	public Iterator(Obj<Alumne> a, Alumne identificatiudelconstructor)
@@ -87,7 +87,7 @@ public class Iterator<T extends Comparable<T>> {
 	/**
 	 * metode constructor tipus assignatura
 	 * @param a - assignatura
-	 * @param identificatiudelconstructor
+	 * @param identificatiudelconstructor - identificador del constructor
 	 */
 	@SuppressWarnings("unchecked")
 	public Iterator(Obj<Assignatura> a, Assignatura identificatiudelconstructor)

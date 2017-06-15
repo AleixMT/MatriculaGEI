@@ -12,11 +12,11 @@ public class Assignatura implements Comparable<Assignatura> {
 	private Integer quadrimestre;
 /**
  * Rep els parametres per a crear la nova Assignatura 
- * @param codi
- * @param nom
- * @param credits
- * @param curs
- * @param quadrimestre
+ * @param codi - codi assignatura
+ * @param nom - nom assignatura
+ * @param credits - n credits
+ * @param curs - curs
+ * @param quadrimestre - quadrimestre
  */
 	public Assignatura(Integer codi, String nom, Integer credits, Integer curs, Integer quadrimestre) {
 	this.codi = codi;
@@ -86,7 +86,7 @@ public class Assignatura implements Comparable<Assignatura> {
 
 	/**
 	 * Setter del curs
-	 * @param curs
+	 * @param curs - curs 
 	 */
 	public void setCurs(Integer curs) {
 		this.curs = curs;
@@ -102,7 +102,7 @@ public class Assignatura implements Comparable<Assignatura> {
 
 	/**
 	 * Setter del quadrimestre
-	 * @param quadrimestre
+	 * @param quadrimestre - quadrimestre
 	 */
 	public void setQuadrimestre(Integer quadrimestre) {
 		this.quadrimestre = quadrimestre;
@@ -118,9 +118,9 @@ public class Assignatura implements Comparable<Assignatura> {
 	/**
 	 * Metode compareTo
 	 * @param codi assignatura
-	 * @return -1 -> codi assignatura de la classe es mes petit que el passat per parametre
-	 * @return 1 -> codi assignatura de la classe es mes gran que el passat per parametre
-	 * @return 0 -> codi assignatura de la classe es igual al passat per parametre
+	 * @return -1 - codi assignatura de la classe es mes petit que el passat per parametre
+	 * @return 1 - codi assignatura de la classe es mes gran que el passat per parametre
+	 * @return 0 - codi assignatura de la classe es igual al passat per parametre
 	 */
 	public int compareTo (int codi){
 		if (this.codi < codi) return -1;

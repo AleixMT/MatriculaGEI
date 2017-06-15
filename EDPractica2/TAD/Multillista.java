@@ -12,7 +12,6 @@ import Interfaces.*;
  * Classe per a crear la multillista
  * no sera mes que un "contenidor" per a dues llistes generiques
  * @author Cristina Izquierdo i Aleix Marine
- * @param <E> tipus generic
  *
  */
 public class Multillista implements TADMultillista{
@@ -176,20 +175,33 @@ public class Multillista implements TADMultillista{
 	}
 	
 	/**
-	 * Getters i setters per als atributs de la classe
+	 * Getter de la llista d'assignatures
+	 * @return assignatura - llista assignatura
 	 */
 	public TADLlistaGenerica<Assignatura> getAs() {
 		return as;
 	}
 
+	/**
+	 * Setter de la llista d'assignatures
+	 * @param as1 - llista assignatures
+	 */
 	public void setAs(TADLlistaGenerica<Assignatura> as1) {
 		as = as1;
 	}
 
+	/**
+	 * Getter de la llista d'alumnes
+	 * @return llista d'alumnes
+	 */
 	public TADLlistaGenerica<Alumne> getA() {
 		return a;
 	}
 
+	/**
+	 * Setter de la llista d'alumnes
+	 * @param a - llista d'alumnes
+	 */
 	public void setA(TADLlistaGenerica<Alumne> a) {
 		this.a = a;
 	}

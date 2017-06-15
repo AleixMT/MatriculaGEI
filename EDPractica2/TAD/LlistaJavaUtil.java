@@ -11,7 +11,6 @@ import Interfaces.*;
  * @author Aleix Marine i Cristina Izquierdo
  *
  * @param <T> tipus generic
- * @param <E>
  */
 public class LlistaJavaUtil<T extends Comparable<T>> implements TADLlistaGenerica<T> {
 	private ArrayList<Obj<T>> llista;
@@ -64,6 +63,7 @@ public class LlistaJavaUtil<T extends Comparable<T>> implements TADLlistaGeneric
 
 	/**
 	 * getter del numero d'elements de la llista
+	 * @return numero d'elements
 	 */
 	public int getNumElem() {
 		return this.llista.size();

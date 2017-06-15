@@ -14,7 +14,8 @@ public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
 	/**
 	 * Afegeix un element a la llista
 	 * @param a - element a afegir
-	 * @throws LlistaPlena
+	 * @throws LlistaPlena - llista plena
+	 * @return false - si no s'ha afegit, true - si s'ha afegit
 	 */
 	public boolean afegir(T a) throws LlistaPlena;
 	
@@ -22,7 +23,7 @@ public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
 	 * Esborra un element de la llista
 	 * @param e - element a esborrar
 	 * @return element esborrat
-	 * @throws LlistaBuida
+	 * @throws LlistaBuida - llista buida
 	 */
 	public T esborrar(T e) throws LlistaBuida;
 	
@@ -30,14 +31,12 @@ public abstract interface TADLlistaGenerica<T extends Comparable<T>> {
 	 * Consulta un element de la llista
 	 * @param c - element a consultar
 	 * @return element a consultar
-	 * @throws LlistaBuida
 	 */
 	public Obj<T> consultar(T c);
 	
 	/**
 	 * Getter del numero d'elements
 	 * @return numero d'elements a la llista
-	 * @throws LlistaBuida
 	 */
 	public int getNumElem();
 	

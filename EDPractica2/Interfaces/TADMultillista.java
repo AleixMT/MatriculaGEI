@@ -13,7 +13,8 @@ public abstract interface TADMultillista {
 	/**
 	 * Afegeix una relacio
 	 * @param e - element a afegir
-	 * @throws LlistaPlena
+	 * @throws LlistaPlena - llista plena
+	 * @return true si s'ha afegit, false si no
 	 */
 	public boolean afegir(Matricula e) throws LlistaPlena;
 	
@@ -21,7 +22,7 @@ public abstract interface TADMultillista {
 	 * Esborra un element de la llista
 	 * @param e - element a esborrar
 	 * @return element esborrat
-	 * @throws LlistaBuida
+	 * @throws LlistaBuida - llista buida
 	 */
 	public Matricula esborrar(Matricula e) throws LlistaBuida;
 	
@@ -29,7 +30,7 @@ public abstract interface TADMultillista {
 	 * Consulta un element de la llista
 	 * @param c - element a consultar
 	 * @return element a consultar
-	 * @throws LlistaBuida
+	 * @throws LlistaBuida - llista buida
 	 */
 	public Matricula consultar(Matricula c)throws LlistaBuida;
 	

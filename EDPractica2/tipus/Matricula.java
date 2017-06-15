@@ -28,52 +28,69 @@ public class Matricula implements Comparable<Matricula>{
 	}
 
 	/**
-	 * Getters i Setters dels atributs de la classe
+	 * Getter de l'alumne
+	 * @return alumne
 	 */
 	public Alumne getAlumne() {
 		return alumne;
 	}
 
+	/**
+	 * Setter de l'alumne
+	 * @param a - alumne
+	 */
 	public void setAlumne(Alumne a) {
 		this.alumne = a;
 	}
 
+	/**
+	 * Getter de l'assignatura
+	 * @return assignatura
+	 */
 	public Assignatura getAssignatura() {
 		return assignatura;
 	}
-
-	public void setAssignatura(Assignatura as) {
-		this.assignatura = as;
-	}
-
-	public Alumne getA() {
-		return alumne;
-	}
-
-	public void setA(Alumne a) {
-		this.alumne = a;
-	}
-
+	
 	public Assignatura getAs() {
 		return assignatura;
 	}
 
-	public void setAs(Assignatura as1) {
-		assignatura = as1;
+	/**
+	 * Setter de l'assignatura
+	 * @param as - assignatura
+	 */
+	public void setAssignatura(Assignatura as) {
+		this.assignatura = as;
 	}
 
+	/**
+	 * Getter del seguent horitzontal
+	 * @return seguent horitzontal
+	 */
 	public Matricula getSeguentH() {
 		return seguentH;
 	}
 
+	/**
+	 * Setter del seguent horitzontal
+	 * @param seguentH - seguent horitzontal
+	 */
 	public void setSeguentH(Matricula seguentH) {
 		this.seguentH = seguentH;
 	}
 
+	/**
+	 * Getter del seguent vertical
+	 * @return seguent vertical
+	 */
 	public Matricula getSeguentV() {
 		return seguentV;
 	}
 
+	/**
+	 * Setter del seguent vertical
+	 * @param seguentV - seguent vertical
+	 */
 	public void setSeguentV(Matricula seguentV) {
 		this.seguentV = seguentV;
 	}
